@@ -3,3 +3,10 @@
 /minilibx-linux
 fdf
 fdf_linux
+*.o
+.vscode/**
+*.out
+.*/*.o
+*.a
+.*/*.a
+testing/**
