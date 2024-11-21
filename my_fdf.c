@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:56:27 by moabdels          #+#    #+#             */
-/*   Updated: 2024/11/20 15:17:19 by moabdels         ###   ########.fr       */
+/*   Updated: 2024/11/21 12:36:16 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(void)
 	img.address = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
 		&img.line_length, &img.endian);
 	mlx_win = mlx_new_window(mlx, WIN_HEIGHT, WIN_WIDTH, "FdF");
-	(void)mlx_win;
+	ft_pixel_put(&img, 5, 5, 0x00FF0000);
+	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }
