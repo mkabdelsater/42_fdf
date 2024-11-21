@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_wrapper_utils.c                                :+:      :+:    :+:   */
+/*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 12:12:04 by moabdels          #+#    #+#             */
-/*   Updated: 2024/11/21 12:30:01 by moabdels         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:59:22 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 /**
  *! Because an image is represented in real time in a window, changing the same
  *! image will cause screen-tearing when writing to it.
- *$ You should therefore create two or more images to hold your frames
- *$ temporarily. You can then write to a temp image rather than current.
+ *$ use `mlx_sync` instead
  */
 
 void	ft_pixel_put(t_img_data *data, int x, int y, int color)
