@@ -3,7 +3,7 @@ CFLAGS 			= -Wall -Wextra -Werror -Wno-unused-variable -Lmlx_linux \
 					 -lmlx_Linux -L/usr/lib-Imlx_linux -lXext -lX11 -lm \
 					 -lz -o
 NAME			= my_fdf
-SRC				= my_fdf.c
+SRC				= my_fdf.c mlx_wrapper_utils.c
 OBJ				= $(SRC:%.c=%.o)
 RM				= rm -rf
 

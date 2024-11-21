@@ -6,14 +6,14 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:07:13 by moabdels          #+#    #+#             */
-/*   Updated: 2024/11/20 15:16:56 by moabdels         ###   ########.fr       */
+/*   Updated: 2024/11/21 12:31:36 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_F
 # define FDF_H
 
-#include "minilibx-linux/mlx.h"
+#include "mlx_linux/mlx.h"
 
 typedef struct s_img_data
 {
@@ -23,5 +23,7 @@ typedef struct s_img_data
 	int		line_length;
 	int		endian;
 }	t_img_data;
+
+void	ft_pixel_put(t_img_data *data, int x, int y, int color);
 
 #endif
