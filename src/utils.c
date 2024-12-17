@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:29:08 by moabdels          #+#    #+#             */
-/*   Updated: 2024/12/17 12:50:12 by moabdels         ###   ########.fr       */
+/*   Updated: 2024/12/17 13:49:36 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,11 @@ bool	point_is_in_window(t_point point)
 	return (true);
 }
 
+int	put_pixel(t_globals *globals, t_point point)
+{
+	int	pixel;
+	int	alpha;
 
+	alpha = 0;
+	if (point.axis[X_AXIS] < )
+}

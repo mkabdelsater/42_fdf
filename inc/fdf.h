@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:55:52 by moabdels          #+#    #+#             */
-/*   Updated: 2024/12/17 13:46:23 by moabdels         ###   ########.fr       */
+/*   Updated: 2024/12/17 13:51:12 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@
 # include <math.h>
 # include <stdbool.h>
 
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 1080
-# define X_AXIS 0
-# define Y_AXIS 1
-# define Z_AXIS 2
+# define WIN_WIDTH	1920
+# define WIN_HEIGHT	1080
+# define X_AXIS		0
+# define Y_AXIS		1
+# define Z_AXIS		2
+# define MENU_WIDTH	350
+# define FIT_MARGIN	50
+# define FIT		1
+# define FREE		0
 
 typedef struct s_point {
 	bool	painted;
