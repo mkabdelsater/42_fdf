@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:55:52 by moabdels          #+#    #+#             */
-/*   Updated: 2024/12/17 13:51:12 by moabdels         ###   ########.fr       */
+/*   Updated: 2024/12/17 13:53:36 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,7 @@ typedef struct s_globals
 }	t_globals;
 
 bool	point_is_in_window(t_point point);
+int		my_putpixel(t_globals *meta, t_point point);
+
 
 #endif
