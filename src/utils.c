@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:29:08 by moabdels          #+#    #+#             */
-/*   Updated: 2024/12/17 12:37:01 by moabdels         ###   ########.fr       */
+/*   Updated: 2024/12/17 12:50:12 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,3 +20,5 @@ bool	point_is_in_window(t_point point)
 		return (false);
 	return (true);
 }
+
+
