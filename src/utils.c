@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:29:08 by moabdels          #+#    #+#             */
-/*   Updated: 2024/12/17 14:01:27 by moabdels         ###   ########.fr       */
+/*   Updated: 2024/12/17 14:11:16 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,33 @@ void	set_color(char *buffer, int endian, int color, int alpha)
 		buffer[1] = (color >> 8) & 0xFF;
 		buffer[0] = (color) & 0xFF;
 	}
+}
+
+int	draw_line(t_globals *globals, t_point start, t_point end)
+{
+	t_point	delta;
+	t_point	point;
+	int		pixels;
+	int		len;
+
+	if (!point_is_in_window(start) && !point_is_in_window(end))
+		return (0);
+	delta.axis[X_AXIS] = end.axis[X_AXIS] - start.axis[X_AXIS];
+	delta.axis[Y_AXIS] = end.axis[Y_AXIS] - start.axis[Y_AXIS];
+	pixels = sqrt((delta.axis[X_AXIS] * delta.axis[X_AXIS]) + \
+			(delta.axis[Y_AXIS] * delta.axis[Y_AXIS]));
+	len = pixels;
+	delta.axis[X_AXIS] /= pixels;
+	delta.axis[Y_AXIS] /= pixels;
+	point.axis[X_AXIS] = start.axis[X_AXIS];
+	point.axis[Y_AXIS] = start.axis[Y_AXIS];
+	while (pixels > 0)
+	{
+		point.color = gradient(start.color, end.color, len, len - pixels);
+		my_putpixel(globals, point);
+		point.axis[X_AXIS] += delta.axis[X_AXIS];
+		point.axis[Y_AXIS] += delta.axis[Y_AXIS];
+		pixels--;
+	}
+	return (1);
 }
