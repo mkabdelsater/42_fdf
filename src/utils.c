@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:29:08 by moabdels          #+#    #+#             */
-/*   Updated: 2024/12/17 14:11:16 by moabdels         ###   ########.fr       */
+/*   Updated: 2024/12/17 14:26:28 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,36 @@ void	set_color(char *buffer, int endian, int color, int alpha)
 		buffer[1] = (color >> 8) & 0xFF;
 		buffer[0] = (color) & 0xFF;
 	}
+}
+
+int	ft_round_double(double num)
+{
+	int	rounded;
+
+	rounded = (int)num;
+	if (num - rounded >= .5)
+		rounded++;
+	return (rounded);
+}
+
+// !REFACTOR
+int	gradient(int start_color, int end_color, int len, int pixels)
+{
+	double	increment[3];
+	int		new[3];
+	int		new_color;
+
+	increment[0] = (double)((end_color >> 16) - \
+					(start_color >> 16)) / (double)len;
+	increment[1] = (double)(((end_color >> 8) & 0xFF) - \
+					((start_color >> 8) & 0xFF)) / (double)len;
+	increment[2] = (double)((end_color & 0xFF) - \
+					(start_color & 0xFF)) / (double)len;
+	new[0] = (start_color >> 16) + ft_round_double(pixels * increment[0]);
+	new[1] = ((start_color >> 8) & 0xFF) + ft_round_double(pixels * increment[1]);
+	new[2] = (start_color & 0xFF) + ft_round_double(pixels * increment[2]);
+	new_color = (new[0] << 16) + (new[1] << 8) + new[2];
+	return (new_color);
 }
 
 int	draw_line(t_globals *globals, t_point start, t_point end)
