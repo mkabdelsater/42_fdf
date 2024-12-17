@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:29:08 by moabdels          #+#    #+#             */
-/*   Updated: 2024/12/17 14:00:29 by moabdels         ###   ########.fr       */
+/*   Updated: 2024/12/17 14:01:27 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,20 @@ int	my_putpixel(t_globals *globals, t_point point)
 	return (0);
 }
 
-
+void	set_color(char *buffer, int endian, int color, int alpha)
+{
+	if (endian == 1)
+	{
+		buffer[0] = alpha;
+		buffer[1] = (color >> 16) & 0xFF;
+		buffer[2] = (color >> 8) & 0xFF;
+		buffer[3] = (color) & 0xFF;
+	}
+	else
+	{
+		buffer[3] = alpha;
+		buffer[2] = (color >> 16) & 0xFF;
+		buffer[1] = (color >> 8) & 0xFF;
+		buffer[0] = (color) & 0xFF;
+	}
+}
