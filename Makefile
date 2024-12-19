@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-CC				= gcc
-CFLAGS 			= -Wall -Wextra -Werror -Wno-unused-variable -Lmlx_linux \
-					 -lmlx_Linux -L/usr/lib-Imlx_linux -lXext -lX11 -lm \
-					 -lz -o
-NAME			= my_fdf
-SRC				= my_fdf.c mlx_utils.c mlx_trgb.c
-OBJ				= $(SRC:%.c=%.o)
-RM				= rm -rf
-
-$(NAME) : $(OBJ)
-	$(CC) $(OBJ) $(CFLAGS) $(NAME)
-
-%.o: %.c
-	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
-
-all: $(NAME)
-
-=======
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
@@ -25,7 +6,7 @@ all: $(NAME)
 #    By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/03 13:23:49 by moabdels          #+#    #+#              #
-#    Updated: 2024/12/13 11:50:25 by moabdels         ###   ########.fr        #
+#    Updated: 2024/12/19 12:33:22 by moabdels         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -128,4 +109,3 @@ norm:
 		@norminette $(SRC) $(INCLUDE) | grep -v Norme -B1 || true
 
 .PHONY: all test bonus lib_clean clean fclean re tclean tre norm
->>>>>>> 9d77f32 (INITIAL COMMIT)
