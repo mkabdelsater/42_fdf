@@ -6,13 +6,13 @@
 #    By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/03 13:23:49 by moabdels          #+#    #+#              #
-#    Updated: 2024/12/19 12:33:22 by moabdels         ###   ########.fr        #
+#    Updated: 2024/12/19 16:29:27 by moabdels         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			:= fdf
 
-CC				:= gcc
+CC				:= cc
 SRC_DIR			:= src/
 OBJ_DIR			:= obj/
 CFLAGS			:= -g -O3 -Wall -Werror -Wextra
@@ -102,7 +102,7 @@ fclean:	clean
 		$(RM) "(LIBFT_DIR)libft.a"
 
 re:		fclean makelibs
-		@make
+		@$(MAKE)
 		@echo "🟢 Cleaned and Rebuilt Everything!"
 
 norm:

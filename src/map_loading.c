@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   map_loading.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/13 11:55:14 by moabdels          #+#    #+#             */
-/*   Updated: 2024/12/19 16:30:53 by moabdels         ###   ########.fr       */
+/*   Created: 2024/12/19 15:11:01 by moabdels          #+#    #+#             */
+/*   Updated: 2024/12/19 15:59:37 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/fdf.h"
+#include "fdf.h"
 
-void	error_out(char *err_msg)
-{
-	ft_putstr_fd(ERR_TAG, 2);
-	ft_putstr_fd(err_msg, 2);
-	exit(EXIT_FAILURE);
-}
+#define BUFFER_SIZE 500000
 
-int	main(int argv, char **argc)
-{
-	t_globals	global_state;
 
-	if (argv != 2)
-		error_out("Number of arguments not 1 - Usage : `./fdf <map file>`");
-	ft_printf("ft_printf works!");
-	(void)global_state;
-	(void)argc;
-	exit(EXIT_SUCCESS);
-}
+

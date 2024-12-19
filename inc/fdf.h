@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:55:52 by moabdels          #+#    #+#             */
-/*   Updated: 2024/12/19 14:55:49 by moabdels         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:58:42 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 
 # include "../lib/minilibx_linux/mlx.h"
 # include "../lib/libft/libft.h"
+# include "../lib/ft_printf/ft_printf.h"
 # include <math.h>
 # include <stdbool.h>
+# include <fcntl.h>
 
 # define WIN_WIDTH	1920
 # define WIN_HEIGHT	1080
