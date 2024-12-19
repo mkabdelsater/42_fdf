@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:55:52 by moabdels          #+#    #+#             */
-/*   Updated: 2024/12/17 13:53:36 by moabdels         ###   ########.fr       */
+/*   Updated: 2024/12/19 14:55:49 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@
 # define FIT_MARGIN	50
 # define FIT		1
 # define FREE		0
+
+# define DEF_COLOR	"\033[0;39m"
+# define SH_GRAY	"\033[0;90m"
+# define SH_RED		"\033[0;91m"
+# define SH_GREEN	"\033[0;92m"
+# define SH_YELLOW	"\033[0;93m"
+# define SH_BLUE	"\033[0;94m"
+# define SH_MAGENTA	"\033[0;95m"
+# define SH_CYAN	"\033[0;96m"
+# define SH_WHITE	"\033[0;97m"
 
 typedef struct s_point {
 	bool	painted;
@@ -97,6 +107,9 @@ typedef struct s_globals
 	t_map		map;
 	t_keys		keys;
 }	t_globals;
+
+// ? General Functionality
+void	error_out(char *err_msg);
 
 bool	point_is_in_window(t_point point);
 int		my_putpixel(t_globals *meta, t_point point);
