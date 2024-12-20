@@ -1,0 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/20 14:23:21 by moabdels          #+#    #+#             */
+/*   Updated: 2024/12/20 14:27:41 by moabdels         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef MAP_H
+# define MAP_H
+
+# include "../inc/fdf.h"
+
+int		draw_map(t_globals *global_state, int fit);
+void	load_map(t_map *map, char *path);
+void	generate_background(t_globals *global_state, int bg_color, int menu_color);
+void	draw_menu(t_globals *global_state);
+void	load_color(int max, int min, t_point *point, t_colors colors);
+void	generate_stars(t_globals *global_state);
+
+#endif
