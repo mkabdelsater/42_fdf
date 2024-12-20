@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 13:15:55 by moabdels          #+#    #+#             */
-/*   Updated: 2024/12/20 13:30:21 by moabdels         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:29:16 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 static void	map_init_colors(t_map *map)
 {
-	map->colors.back
+	map->colors.back = BACK_COLOR;
+	map->colors.menu = MENU_COLOR;
+	map->colors.bottom = BOTTOM_COLOR;
+	map->colors.ground = GROUND_COLOR;
+	map->colors.top = TOP_COLOR;
 }
 
 void	map_init(t_map *map, bool is_first_init)
