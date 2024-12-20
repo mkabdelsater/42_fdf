@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:55:52 by moabdels          #+#    #+#             */
-/*   Updated: 2024/12/19 15:58:42 by moabdels         ###   ########.fr       */
+/*   Updated: 2024/12/20 13:45:20 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,28 @@
 # define FIT_MARGIN	50
 # define FIT		1
 # define FREE		0
+
+# define FIREBRICK_RED	0xc1272d
+# define LIME_GREEN		0x33cc55
+# define CRIMSON 		0xff255c
+# define DODGER_BLUE	0x1B8EFA
+# define BLUE			0x0000FF
+# define WOODSMOKE		0x151515
+# define SILVER			0xBBBBBB
+# define CARDINAL_PINK	0x9A1F6A
+# define MAROON			0xC2294E
+# define FLAMINGO		0xEC4B27
+# define JAFFA			0xEF8633
+# define TULIP_TREE		0xF3AF3D
+
+# define DEFAULT_COLOR		JAFFA
+# define BOTTOM_COLOR		DODGER_BLUE
+# define TOP_COLOR			MAROON
+# define GROUND_COLOR		TULIP_TREE
+# define BACK_COLOR			WOODSMOKE
+# define MENU_COLOR			0x202020
+# define TEXT_COLOR			0xEAEAEA
+# define NUMBER_COLOR		0xF3AF3D
 
 # define DEF_COLOR	"\033[0;39m"
 # define SH_GRAY	"\033[0;90m"
@@ -88,7 +110,7 @@ typedef struct s_map
 	float		b_range;
 	float		proportion;
 	float		radius;
-	int			zmin;
+	int			z_min;
 	int			len;
 	int			renders;
 	char		*memory;
