@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 15:11:01 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/06 13:24:53 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/06 14:54:27 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	load_map(t_map *map, char *path)
 	close(fd);
 	map_size(map);
 	map_get_points(map);
-	
+
 }
 
 
@@ -66,3 +66,35 @@ static char	*parse_map(int fd)
 	return (map);
 }
 
+//go through the lines map->memory line by line and load the points
+// free each line after loading it into `line`
+
+static void	map_get_points(t_map *map)
+{
+	int			i;
+	char		*line;
+	char		*last_line;
+	static int	points = 0;
+	static int	lines = 0;
+
+	i = 0;
+	line = NULL;
+	last_line = map->memory;
+	map->points = ft_calloc(map->len, sizeof(t_point));
+	while (true)
+	{
+		i++;
+		if (map->memory[i] != '\n' && map->memory[i] != '\0')
+			continue ;
+		free(line);
+		line = ft_substr(last_line, 0, &map->memory[i] - last_line);
+		last_line = &map->memory[i + 1];
+		points += load_points(line, map, lines++);
+		ft_printf("\r 🔵 reading %d points...", points);
+		if (map->memory[i] == '\0')
+			break ;
+	}
+
+	free(line);
+	ft_printf("\r 🟢 %d Points read successfully!\n", points);
+}
