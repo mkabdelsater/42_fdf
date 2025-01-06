@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 15:11:01 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/06 14:54:27 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/06 14:58:39 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ static void	map_get_points(t_map *map)
 	int			i;
 	char		*line;
 	char		*last_line;
-	static int	points = 0;
-	static int	lines = 0;
+	static int	point_count = 0;
+	static int	line_count = 0;
 
 	i = 0;
 	line = NULL;
@@ -89,12 +89,14 @@ static void	map_get_points(t_map *map)
 		free(line);
 		line = ft_substr(last_line, 0, &map->memory[i] - last_line);
 		last_line = &map->memory[i + 1];
-		points += load_points(line, map, lines++);
-		ft_printf("\r 🔵 reading %d points...", points);
+		point_count += load_points(line, map, line_count++);
+		ft_printf("\r 🔵 reading %d points...", point_count);
 		if (map->memory[i] == '\0')
 			break ;
 	}
 
 	free(line);
-	ft_printf("\r 🟢 %d Points read successfully!\n", points);
+	ft_printf("\r 🟢 %d Points read successfully!\n", point_count);
 }
+
+
