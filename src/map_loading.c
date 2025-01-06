@@ -6,11 +6,12 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 15:11:01 by moabdels          #+#    #+#             */
-/*   Updated: 2024/12/20 14:52:20 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/06 13:24:53 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
+#include "../inc/map.h"
 
 #define MAX_READ_SIZE 500000
 
@@ -20,12 +21,22 @@ static char	*parse_map(int fd);
 
 void	load_map(t_map *map, char *path)
 {
-
+	int	fd;
+	map_init(map, true);
+	fd = open(path, O_RDONLY);
+	if (fd < 2)
+		error_out("Error Opening the Map File");
+	map->memory = parse_map(fd);
+	close(fd);
+	map_size(map);
+	map_get_points(map);
+	
 }
 
 
 // ? when bytes_read is less than the MAX_READ_SIZE, that means we've reached
 // ? the end of the file
+// ! TODO: readability can be improved?
 
 static char	*parse_map(int fd)
 {
