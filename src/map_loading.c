@@ -6,12 +6,13 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 15:11:01 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/06 15:45:39 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/07 15:30:33 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 #include "../inc/map.h"
+#include "../inc/utils.h"
 
 #define MAX_READ_SIZE 500000
 
@@ -128,3 +129,25 @@ static int	load_points(char *line, t_map *map, int line_count)
 	return (i);
 }
 
+void	set_point_color(int max, int min, t_point *point, t_colors colors)
+{
+	point->painted = true;
+	point->color = DEFAULT_COLOR;
+	if (point->color_hex > 0)
+	{
+		point->color = point->color_hex;
+		return ;
+	}
+	if (point->axis[Z_AXIS] == max)
+		point->color = colors.top;
+	else if (point->axis[Z_AXIS] == 0)
+		point->color = colors.ground;
+	else if (point->axis[Z_AXIS] == min && min != 0)
+		point->color = colors.bottom;
+	else if (point->axis[Z_AXIS] > 0)
+		point->color = gradient(colors.ground, colors.top, \
+		max, point->axis[Z_AXIS]);
+	else
+		point->color = gradient(colors.bottom, colors.ground, \
+			-min, - (min - point->axis[Z_AXIS]));
+}

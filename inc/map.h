@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:23:21 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/06 16:13:02 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/07 15:26:16 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int		draw_map(t_globals *global_state, int fit);
 void	load_map(t_map *map, char *path);
 void	generate_background(t_globals *global_state, int bg_color, int menu_color);
 void	draw_menu(t_globals *global_state);
-void	load_color(int max, int min, t_point *point, t_colors colors);
+void	set_point_color(int max, int min, t_point *point, t_colors colors);
 void	generate_stars(t_globals *global_state);
 void	map_init(t_map *map, bool is_first_init);
 
-// ? Utils
+// ? Map Utils
 bool	is_valid_point(char *value);
 int		get_point_color(char *line);
 
