@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:29:08 by moabdels          #+#    #+#             */
-/*   Updated: 2024/12/19 12:23:35 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:50:30 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,4 +115,19 @@ int	draw_line(t_globals *globals, t_point start, t_point end)
 		pixels--;
 	}
 	return (1);
+}
+
+void	free_2d_vector(char **vec)
+{
+	int	i;
+
+	if (!vec)
+		return ;
+	i = 0;
+	while (vec[i])
+	{
+		free(vec[i]);
+		i++;
+	}
+	free (vec);
 }
