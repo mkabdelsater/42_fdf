@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 15:11:01 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/07 15:30:33 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/09 13:24:36 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	load_map(t_map *map, char *path)
 	close(fd);
 	map_size(map);
 	map_get_points(map);
+	color_map_points(map);
 
 }
 
@@ -150,4 +151,18 @@ void	set_point_color(int max, int min, t_point *point, t_colors colors)
 	else
 		point->color = gradient(colors.bottom, colors.ground, \
 			-min, - (min - point->axis[Z_AXIS]));
+}
+
+void	color_map_points(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->len)
+	{
+		set_point_color((int)map->limits.axis[Z_AXIS], map->z_min, \
+		&map->points[i], map->colors);
+		i++;
+	}
+
 }
