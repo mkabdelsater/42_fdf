@@ -1,5 +1,5 @@
-obj/main.o: src/main.c src/../inc/fdf.h \
+obj/map_loading.o: src/map_loading.c src/../inc/fdf.h \
   src/../inc/../lib/minilibx_linux/mlx.h src/../inc/../lib/libft/libft.h \
   src/../inc/../lib/ft_printf/ft_printf.h \
   src/../inc/../lib/ft_printf/../libft/libft.h src/../inc/map.h \
-  src/../inc/../inc/fdf.h
+  src/../inc/../inc/fdf.h src/../inc/utils.h src/../inc/geometry.h
