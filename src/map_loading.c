@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 15:11:01 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/09 16:14:29 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:23:39 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,37 @@ static void	map_get_points(t_map *map)
 
 	free(line);
 	ft_printf("\r 🟢 %d Points read successfully!\n", point_count);
+}
+
+// ! TO_REFACTOR : Readability
+
+static void	set_map_limits(t_map *map)
+{
+	static int	i = -1;
+	static int	elem_count;
+
+	while (map->memory[++i])
+	{
+		if (map->memory[i] == '\n' && map->memory[i + 1] == '\0')
+			break ;
+		if (ft_isalnum(map->memory[i]) && \
+			(map->memory[i + 1] == ' ' || map->memory[i + 1] == '\n' || \
+			map->memory[i + 1] == '\0'))
+				elem_count++;
+		if (map->memory[i] == '\n')
+		{
+			map->limits.axis[Y_AXIS]++;
+			if (map->limits.axis[X_AXIS] != 0 && (map->limits.axis[X_AXIS] != elem_count))
+				error_out("Bad Map Format - Number of Elements per line is inconsistent");
+			else
+				map->limits.axis[X_AXIS] = elem_count;
+			elem_count = 0;
+		}
+	}
+	if (elem_count > 0 && (map->limits.axis[X_AXIS] != elem_count))
+		error_out("Bad Map Format - Number of Elements per line is inconsistent");
+	map->limits.axis[Y_AXIS]++;
+	map->len = map->limits.axis[X_AXIS] * map->limits.axis[Y_AXIS];
 }
 
 void	set_point_color(int max, int min, t_point *point, t_colors colors)
