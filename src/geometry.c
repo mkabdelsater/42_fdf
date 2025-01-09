@@ -6,11 +6,13 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 13:27:08 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/09 14:57:21 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/09 15:03:11 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
+
+// ! TO_REVIEW
 
 void	set_polar_coords(t_map *map)
 {

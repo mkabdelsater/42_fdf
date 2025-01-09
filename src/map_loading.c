@@ -6,13 +6,14 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 15:11:01 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/09 13:24:36 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/09 15:08:00 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 #include "../inc/map.h"
 #include "../inc/utils.h"
+#include "../inc/geometry.h"
 
 #define MAX_READ_SIZE 500000
 
@@ -32,7 +33,8 @@ void	load_map(t_map *map, char *path)
 	map_size(map);
 	map_get_points(map);
 	color_map_points(map);
-
+	set_polar_coords(map);
+	ft_printf("\nLoading GUI...\n");
 }
 
 
