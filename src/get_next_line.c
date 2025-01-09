@@ -6,11 +6,11 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 16:28:27 by moabdels          #+#    #+#             */
-/*   Updated: 2024/07/29 14:56:20 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:47:23 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "../inc/get_next_line.h"
 
 /**
  * 1. malloc for a new node

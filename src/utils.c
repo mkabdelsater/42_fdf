@@ -6,11 +6,12 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:29:08 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/07 14:50:30 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:33:53 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
+#include "../inc/utils.h"
 
 bool	point_is_in_window(t_point point)
 {
@@ -19,6 +20,24 @@ bool	point_is_in_window(t_point point)
 	if(point.axis[Y_AXIS] < 0 || point.axis[Y_AXIS] > WIN_HEIGHT)
 		return (false);
 	return (true);
+}
+
+void	set_color(char *buffer, int endian, int color, int alpha)
+{
+	if (endian == 1)
+	{
+		buffer[0] = alpha;
+		buffer[1] = (color >> 16) & 0xFF;
+		buffer[2] = (color >> 8) & 0xFF;
+		buffer[3] = (color) & 0xFF;
+	}
+	else
+	{
+		buffer[3] = alpha;
+		buffer[2] = (color >> 16) & 0xFF;
+		buffer[1] = (color >> 8) & 0xFF;
+		buffer[0] = (color) & 0xFF;
+	}
 }
 
 int	my_putpixel(t_globals *globals, t_point point)
@@ -40,23 +59,6 @@ int	my_putpixel(t_globals *globals, t_point point)
 	return (0);
 }
 
-void	set_color(char *buffer, int endian, int color, int alpha)
-{
-	if (endian == 1)
-	{
-		buffer[0] = alpha;
-		buffer[1] = (color >> 16) & 0xFF;
-		buffer[2] = (color >> 8) & 0xFF;
-		buffer[3] = (color) & 0xFF;
-	}
-	else
-	{
-		buffer[3] = alpha;
-		buffer[2] = (color >> 16) & 0xFF;
-		buffer[1] = (color >> 8) & 0xFF;
-		buffer[0] = (color) & 0xFF;
-	}
-}
 
 int	ft_round_double(double num)
 {

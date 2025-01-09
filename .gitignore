@@ -10,3 +10,5 @@ fdf_linux
 *.a
 .*/*.a
 testing/**
+obj/
+*.d

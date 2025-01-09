@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 16:28:24 by moabdels          #+#    #+#             */
-/*   Updated: 2024/07/23 13:17:32 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:47:40 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../inc/get_next_line.h"
 
-void	reset_list(t_list **list, t_list *clean_node, char *str)
+void	reset_list(t_list **list, t_list *clean_node, char *str, int fd)
 {
 	t_list	*temp_node;
 
-	if (*list == NULL)
+	clean_node->str_buf = str;
+	clean_node->node_fd = fd;
+	if (list == NULL || *list == NULL)
+	{
+		clean_node->next = NULL;
 		return ;
-	while (*list)
+	}
+	temp_node = *list;
+	while (*list && (*list)->node_fd == fd)
 	{
 		temp_node = (*list)->next;
 		free((*list)->str_buf);
 		free((*list));
 		*list = temp_node;
 	}
-	*list = NULL;
+	clean_node->next = temp_node;
 	if (clean_node->str_buf[0])
 		*list = clean_node;
 	else
@@ -64,7 +70,7 @@ t_list	*get_last_node(t_list *list_node)
 	return (list_node);
 }
 
-void	copy_str_to_node(t_list *list_node, char *str)
+void	copy_str_to_node(t_list *list_node, char *str, int fd)
 {
 	int	i_node_str_index;
 	int	j_input_str_index;
@@ -72,7 +78,7 @@ void	copy_str_to_node(t_list *list_node, char *str)
 	if (list_node == NULL)
 		return ;
 	j_input_str_index = 0;
-	while (list_node)
+	while (list_node && list_node->node_fd == fd)
 	{
 		i_node_str_index = 0;
 		while (list_node->str_buf[i_node_str_index])
@@ -90,9 +96,7 @@ void	copy_str_to_node(t_list *list_node, char *str)
 	str[j_input_str_index] = '\0';
 }
 
-// fake change
-
-int	len_to_next_line(t_list *list_node)
+int	len_to_next_line(t_list *list_node, int fd)
 {
 	int	index;
 	int	len;
@@ -100,7 +104,7 @@ int	len_to_next_line(t_list *list_node)
 	if (list_node == NULL)
 		return (0);
 	len = 0;
-	while (list_node)
+	while (list_node && list_node->node_fd == fd)
 	{
 		index = 0;
 		while (list_node->str_buf[index])
@@ -114,3 +118,18 @@ int	len_to_next_line(t_list *list_node)
 	}
 	return (len);
 }
+
+// ! DELETE WHEN DONE
+
+// void	print_list(t_list **list)
+// {
+// 	t_list	*temp;
+
+// 	temp = *list;
+// 	printf("\033[93mCURRENT LIST : \n\033[0m *\n");
+// 	while (temp)
+// 	{
+// 		printf(" ⮡ [%s] <%i>\n", temp->str_buf, temp->node_fd);
+// 		temp = temp->next;
+// 	}
+// }
