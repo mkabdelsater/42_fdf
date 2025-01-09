@@ -6,11 +6,12 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:47:45 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/07 14:47:21 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:28:41 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
+#include "../inc/utils.h"
 
 int	get_point_color(char *line)
 {
