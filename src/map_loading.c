@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 15:11:01 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/09 16:23:39 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:26:09 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	load_map(t_map *map, char *path)
 		error_out("Error Opening the Map File");
 	map->memory = parse_map(fd);
 	close(fd);
-	map_size(map);
+	set_map_limits(map);
 	map_get_points(map);
 	color_map_points(map);
 	set_polar_coords(map);
