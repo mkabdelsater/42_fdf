@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/10 14:12:28 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/10 15:34:23 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,34 @@
 #include "../inc/geometry.h"
 #include "../inc/utils.h"
 #include <time.h>
+
+static void	z_division(t_point *projection, float divisor, int len)
+{
+	int i;
+
+	i = 0;
+	while (i < len)
+	{
+		projection[i].axis[Z_AXIS] /= divisor;
+		i++;
+	}
+}
+
+static void	bend_model_view(t_point *points, int len, float range)
+{
+	int		i;
+	float	bend_factor;
+
+	i = 0;
+	while (i < len)
+	{
+		bend_factor = (pow(points[i].axis[X_AXIS], 2) * range) + \
+			(pow(points[i].axis[Y_AXIS], 2) * range);
+		points[i].axis[Z_AXIS] -= bend_factor;
+		i++;
+	}
+
+}
 
 static void	parse_map_to_model(t_globals *global_state, t_point *projection)
 {
