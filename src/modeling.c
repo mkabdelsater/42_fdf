@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/10 15:34:23 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:02:27 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,25 @@
 #include "../inc/geometry.h"
 #include "../inc/utils.h"
 #include <time.h>
+
+// ! TO_REFACTOR this might not be working correctly?
+
+static void	toggle_geography_view(t_map *map, t_point *points)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->len)
+	{
+		points[i].axis[X_AXIS] = (map->radius + points[i].axis[Z_AXIS]) * \
+			cos(points[i].polar[LONG]) * sin(points[i].polar[LAT]);
+		points[i].axis[Y_AXIS] = (map->radius + points[i].axis[Z_AXIS]) * \
+			sin(points[i].polar[LONG]) * sin(points[i].polar[LAT]);
+		points[i].axis[Z_AXIS] = (map->radius + points[i].axis[Z_AXIS]) * \
+			cos(points[i].polar[LAT]);
+		i++;
+	}
+}
 
 static void	z_division(t_point *projection, float divisor, int len)
 {
@@ -41,15 +60,17 @@ static void	bend_model_view(t_point *points, int len, float range)
 		points[i].axis[Z_AXIS] -= bend_factor;
 		i++;
 	}
-
 }
+
+// ! Optimization Angle : each of these functions can/should be applied separately
+// ! to avoid redrawing the map everytime
 
 static void	parse_map_to_model(t_globals *global_state, t_point *projection)
 {
 	z_division(projection, global_state->map.z_divisor, global_state->map.len);
-	bending(projection, global_state->map.len, global_state->map.b_range);
+	bend_model_view(projection, global_state->map.len, global_state->map.b_range);
 	if (global_state->map.b_geo)
-		spherize(&global_state->map, projection);
+		toggle_geography_view(&global_state->map, projection);
 	rotate_x(projection, projection, global_state->map.ang[X_AXIS], \
 		global_state->map.len);
 	rotate_y(projection, projection, global_state->map.ang[Y_AXIS], \
