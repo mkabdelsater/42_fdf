@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/10 14:03:57 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/10 14:12:28 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,25 @@
 #include "../inc/geometry.h"
 #include "../inc/utils.h"
 #include <time.h>
+
+static void	parse_map_to_model(t_globals *global_state, t_point *projection)
+{
+	z_division(projection, global_state->map.z_divisor, global_state->map.len);
+	bending(projection, global_state->map.len, global_state->map.b_range);
+	if (global_state->map.b_geo)
+		spherize(&global_state->map, projection);
+	rotate_x(projection, projection, global_state->map.ang[X_AXIS], \
+		global_state->map.len);
+	rotate_y(projection, projection, global_state->map.ang[Y_AXIS], \
+		global_state->map.len);
+	rotate_z(projection, projection, global_state->map.ang[Z_AXIS], \
+		global_state->map.len);
+	if (global_state->map.b_geo && global_state->map.b_shadow)
+		shadow(projection, global_state->map.len);
+	orto_projection(projection, projection, global_state->map.len);
+	scale(projection, global_state->map.scale, global_state->map.len);
+	translate(projection, global_state->map.source, global_state->map.len);
+}
 
 int	draw_model(t_globals *global_state, int fit)
 {
