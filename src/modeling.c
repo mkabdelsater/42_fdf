@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/13 13:39:10 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/13 15:49:08 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ static void	set_projection_matrix(float (*matrix)[3], int axis, float angle)
 	}
 }
 
-static t_point	project_point(float matrix[3][3], t_point point, float angle)
+static t_point	project_point(float matrix[3][3], t_point point)
 {
 	int		i;
 	int		j;
@@ -141,7 +141,7 @@ static void	rotate_along_axis(t_point *points, t_point *projection, \
 	i = 0;
 	while (i < len)
 	{
-		projection[i] = project_point(projection_matrix, points[i], angle);
+		projection[i] = project_point(projection_matrix, points[i]);
 		i++;
 	}
 }
@@ -155,17 +155,94 @@ static void	parse_map_to_model(t_globals *global_state, t_point *projection)
 	bend_model_view(projection, global_state->map.len, global_state->map.b_range);
 	if (global_state->map.b_geo)
 		toggle_geography_view(&global_state->map, projection);
-	rotate_x(projection, projection, global_state->map.ang[X_AXIS], \
-		global_state->map.len);
-	rotate_y(projection, projection, global_state->map.ang[Y_AXIS], \
-		global_state->map.len);
-	rotate_z(projection, projection, global_state->map.ang[Z_AXIS], \
-		global_state->map.len);
-	if (global_state->map.b_geo && global_state->map.b_shadow)
-		shadow(projection, global_state->map.len);
-	orto_projection(projection, projection, global_state->map.len);
-	scale(projection, global_state->map.scale, global_state->map.len);
-	translate(projection, global_state->map.source, global_state->map.len);
+	rotate_along_axis(projection, projection, global_state->map.ang[X_AXIS], \
+		global_state->map.len, X_AXIS);
+	rotate_along_axis(projection, projection, global_state->map.ang[Y_AXIS], \
+		global_state->map.len, Y_AXIS);
+	rotate_along_axis(projection, projection, global_state->map.ang[Z_AXIS], \
+		global_state->map.len, Z_AXIS);
+	// if (global_state->map.b_geo && global_state->map.b_shadow)
+	// 	shadow(projection, global_state->map.len);
+	// orto_projection(projection, projection, global_state->map.len);
+	// scale(projection, global_state->map.scale, global_state->map.len);
+	// translate(projection, global_state->map.source, global_state->map.len);
+}
+
+static void	duplicate_map(t_point *src, t_point *dst, int len)
+{
+	int	i;
+
+	i = 0;
+	while (i < len)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+}
+
+static int	convert_color_to_32bit(t_globals *global_state, int color)
+{
+	if (global_state->bitmap.bit_x_pixel != 32)
+		color = mlx_get_color_value(global_state->mlx, color);
+	return (color);
+}
+
+/*
+ ! TO_REFACTOR: we do this operation several times? should probably be used more?
+ *
+ * fill the 4 bytes of the bitmap buffer with the color values
+ * endian == 1 => MSB - Alpha
+ * endian == 0 => LSB - Blue
+ *
+ */
+
+static void	set_bitmap_color(char *bitmap_buffer, int color, int alpha, int endian)
+{
+	if (endian == 1)
+	{
+		bitmap_buffer[0] = alpha;
+		bitmap_buffer[1] = (color >> 16) & 0xFF;
+		bitmap_buffer[2] = (color >> 8) & 0xFF;
+		bitmap_buffer[3] = (color) & 0xFF;
+	}
+	else
+	{
+		bitmap_buffer[0] = (color) & 0xFF;
+		bitmap_buffer[1] = (color >> 8) & 0xFF;
+		bitmap_buffer[2] = (color >> 16) & 0xFF;
+		bitmap_buffer[3] = alpha;
+	}
+}
+
+// ! TO_REFACTOR: what does `pixel` mean here??
+
+static void	draw_background(t_globals *global_state, int bg_color, int menu_color)
+{
+	int	axis[2];
+	int	pixel_index;
+	int	color;
+
+	axis[Y_AXIS] = 0;
+	axis[X_AXIS] = 0;
+	bg_color = convert_color_to_32bit(global_state, bg_color);
+	menu_color = convert_color_to_32bit(global_state, menu_color);
+	while (axis[Y_AXIS] < WIN_HEIGHT)
+	{
+		while (axis[X_AXIS] < WIN_WIDTH)
+		{
+			if (axis[X_AXIS] < MENU_WIDTH)
+				color = menu_color;
+			else
+				color = bg_color;
+			pixel_index = (axis[Y_AXIS] * global_state->bitmap.lines) + \
+				(axis[X_AXIS] * 4);
+			set_bitmap_color(&global_state->bitmap.buffer[pixel_index], \
+				color, 1, global_state->bitmap.endian);
+			axis[X_AXIS]++;
+		}
+		axis[Y_AXIS]++;
+		axis[X_AXIS] = 0;
+	}
 }
 
 int	draw_model(t_globals *global_state, int fit)
@@ -178,14 +255,15 @@ int	draw_model(t_globals *global_state, int fit)
 	if (projection == NULL)
 		error_out("Failed Alocating memory for projected map in draw_model()");
 	global_state->map.renders = global_state->map.renders + 1;
-	generate_background(global_state, global_state->map.colors.back, \
+	draw_background(global_state, global_state->map.colors.back, \
 		global_state->map.colors.menu);
-	copy_map(global_state->map.points, projection, global_state->map.len);
+	duplicate_map(global_state->map.points, projection, global_state->map.len);
 	parse_map_to_model(global_state, projection);
-	drawing(global_state, projection, fit);
+	(void)fit;
+	// drawing(global_state, projection, fit);
 	mlx_put_image_to_window(global_state->mlx, global_state->win, \
 		global_state->bitmap.img, 0, 0);
-	draw_menu(global_state);
+	// draw_menu(global_state);
 	free(projection);
 	t = clock() - t;
 	global_state->map.performance = ((double)t) / CLOCKS_PER_SEC;

@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:55:14 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/10 13:35:02 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/13 15:52:01 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int	main(int argv, char **argc)
 		error_out("Number of arguments not 1 - Usage : `./fdf <map file>`");
 	load_map(&global_state.map, argc[1]);
 	system_init(&global_state);
-	(void)argc;
+	if (draw_model(&global_state, FIT) < 0)
 	exit(EXIT_SUCCESS);
 }
