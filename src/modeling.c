@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/13 15:49:08 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:44:43 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,6 +245,47 @@ static void	draw_background(t_globals *global_state, int bg_color, int menu_colo
 	}
 }
 
+// ! OPTIMIZATION ANGLE : non-polynomial time calculation?
+
+static bool	point_is_in_screen(t_point *points, int len)
+{
+	int	i;
+
+	i = 0;
+	while (i < len)
+	{
+		if (points[i].axis[X_AXIS] < (MENU_WIDTH + FIT_MARGIN) || \
+			points[i].axis[X_AXIS] > (WIN_WIDTH - FIT_MARGIN))
+			return (false);
+		if (points[i].axis[Y_AXIS] < FIT_MARGIN || \
+			points[i].axis[Y_AXIS] > (WIN_HEIGHT - FIT_MARGIN))
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+// ! AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+static void	zoom_model_to_fit(t_globals *global_state, t_point *projection)
+{
+	global_state->map.source.axis[X_AXIS] = ((WIN_WIDTH - MENU_WIDTH) / 2) + MENU_WIDTH;
+	global_state->map.source.axis[Y_AXIS] = WIN_HEIGHT / 2;
+	global_state->map.source.axis[Z_AXIS] = 0;
+	global_state->map.scale = 1;
+	duplicate_map(global_state->map.points, projection, global_state->map.len);
+	parse_map_to_model(global_state, projection);
+	while (point_is_in_screen(projection, global_state->map.len))
+	{
+		duplicate_map(global_state->map.points, projection, global_state->map.len);
+		parse_map_to_model(global_state, projection);
+		global_state->map.scale = global_state->map.scale + 0.2;
+	}
+}
+
+// ! TO_REFACTOR : rename projection arg to something like model_projection
+// ! TODO : add functionality to resize window
+
 int	draw_model(t_globals *global_state, int fit)
 {
 	t_point *projection;
@@ -259,8 +300,9 @@ int	draw_model(t_globals *global_state, int fit)
 		global_state->map.colors.menu);
 	duplicate_map(global_state->map.points, projection, global_state->map.len);
 	parse_map_to_model(global_state, projection);
-	(void)fit;
-	// drawing(global_state, projection, fit);
+	if (fit)
+		zoom_model_to_fit(global_state, projection);
+	// ! wired & doted 🤦‍♂️
 	mlx_put_image_to_window(global_state->mlx, global_state->win, \
 		global_state->bitmap.img, 0, 0);
 	// draw_menu(global_state);
