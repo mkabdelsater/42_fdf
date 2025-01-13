@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/10 16:45:56 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/13 13:39:10 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,29 @@ static void	set_projection_matrix(float (*matrix)[3], int axis, float angle)
 		matrix[1][1] = cos(angle);
 		matrix[2][2] = 1;
 	}
+}
+
+static t_point	project_point(float matrix[3][3], t_point point, float angle)
+{
+	int		i;
+	int		j;
+	t_point	result;
+
+	result = point;
+	i = 0;
+	while (i < 3)
+	{
+		result.axis[i] = 0;
+		result.color = point.color;
+		j = 0;
+		while (j < 3)
+		{
+			result.axis[i] += matrix[i][j] *point.axis[j];
+			j++;
+		}
+		i++;
+	}
+	return (result);
 }
 
 static void	rotate_along_axis(t_point *points, t_point *projection, \
