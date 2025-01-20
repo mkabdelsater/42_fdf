@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/20 15:01:33 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:40:47 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -328,29 +328,29 @@ static void	draw_wires(t_globals *global_state, t_point *wire)
 // ! TO_REFACTOR : rename projection arg to something like model_projection
 // ! TODO : add functionality to resize window
 
-int	draw_model(t_globals *global_state, int fit)
+int	draw_model(t_globals *fdf, int fit)
 {
 	t_point *projection;
 	clock_t	t;
 
 	t = clock();
-	projection = malloc(global_state->map.len * sizeof(t_point));
+	projection = malloc(fdf->map.len * sizeof(t_point));
 	if (projection == NULL)
 		error_out("Failed Alocating memory for projected map in draw_model()");
-	global_state->map.renders = global_state->map.renders + 1;
-	draw_background(global_state, global_state->map.colors.back, \
-		global_state->map.colors.menu);
-	duplicate_map(global_state->map.points, projection, global_state->map.len);
-	parse_map_to_model(global_state, projection);
+	fdf->map.renders = fdf->map.renders + 1;
+	draw_background(fdf, fdf->map.colors.back, \
+		fdf->map.colors.menu);
+	duplicate_map(fdf->map.points, projection, fdf->map.len);
+	parse_map_to_model(fdf, projection);
 	if (fit)
-		zoom_model_to_fit(global_state, projection);
-	if (global_state->map.b_lines)
-		draw_wires(global_state, projection);
-	mlx_put_image_to_window(global_state->mlx, global_state->win, \
-		global_state->bitmap.img, 0, 0);
-	draw_menu(global_state);
+		zoom_model_to_fit(fdf, projection);
+	if (fdf->map.b_lines)
+		draw_wires(fdf, projection);
+	mlx_put_image_to_window(fdf->mlx, fdf->win, \
+		fdf->bitmap.img, 0, 0);
+	draw_menu(fdf);
 	free(projection);
 	t = clock() - t;
-	global_state->map.performance = ((double)t) / CLOCKS_PER_SEC;
+	fdf->map.performance = ((double)t) / CLOCKS_PER_SEC;
 	return (1);
 }
