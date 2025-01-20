@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:02:22 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/20 16:26:52 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:32:47 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,34 @@ static void	draw_info(t_globals *fdf)
 	draw_number(fdf, MENU_TAB_SIZE + 110, line, fdf->map.b_range * 10000);
 }
 
-void	draw_menu(t_globals *global_state)
+static draw_settings(t_globals *fdf)
 {
-	draw_controls(global_state);
-	draw_info(global_state);
-	draw_settings(global_state);
-	draw_color_controls(global_state);
+	int	line;
+
+	line = MAPINFO_BOX;
+	draw_string(fdf, MENU_TAB_SIZE, line, "---- SETTINGS ----");
+	line += LINE_SIZE;
+	draw_string(fdf, MENU_TAB_SIZE, line, "Size:");
+	draw_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.len);
+	line += LINE_SIZE;
+	draw_string(fdf, MENU_TAB_SIZE, line, "Max X:");
+	draw_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.limits.axis[X_AXIS]);
+	line += LINE_SIZE;
+	draw_string(fdf, MENU_TAB_SIZE, line, "Max Y:");
+	draw_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.limits.axis[Y_AXIS]);
+	line += LINE_SIZE;
+	draw_string(fdf, MENU_TAB_SIZE, line, "Max Z:");
+	draw_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.limits.axis[Z_AXIS]);
+	line += LINE_SIZE;
+	draw_string(fdf, MENU_TAB_SIZE, line, "Min Z:");
+	draw_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.z_min);
+	line += LINE_SIZE;
+}
+
+void	draw_menu(t_globals *fdf)
+{
+	draw_controls(fdf);
+	draw_info(fdf);
+	draw_settings(fdf);
+	draw_color_controls(fdf);
 }
