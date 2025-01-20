@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/13 16:44:43 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:58:18 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -283,6 +283,49 @@ static void	zoom_model_to_fit(t_globals *global_state, t_point *projection)
 	}
 }
 
+static void	draw_wire(t_point *point, t_globals *global_state, int visual_density, int line)
+{
+	int	i;
+	int	x_length;
+	int	y_length;
+	int	x_limit;
+
+	i = 0;
+	x_limit = (int)global_state->map.limits.axis[X_AXIS];
+	while (i < x_limit)
+	{
+		x_length = i + visual_density;
+		if (x_length >= x_limit)
+			x_length = x_limit - 1;
+		y_length = i + x_limit * visual_density;
+		if (point[i].painted)
+		{
+			draw_line(global_state, point[i], point[x_length]);
+			if (line + visual_density < (int)global_state->map.limits.axis[Y_AXIS])
+				draw_line(global_state, point[i], point[y_length]);
+		}
+		i += visual_density;
+	}
+}
+
+
+// ! TO_REFACTOR : magic number
+static void	draw_wires(t_globals *global_state, t_point *wire)
+{
+	int	i;
+	int	visual_density;
+
+	visual_density = 8 / global_state->map.scale;
+	if (visual_density == 0)
+		visual_density = 1;
+	i = 0;
+	while (i < global_state->map.len)
+	{
+		draw_wire(&wire[i], global_state, visual_density, i / global_state->map.limits.axis[X_AXIS]);
+		i += global_state->map.limits.axis[X_AXIS] * visual_density;
+	}
+}
+
 // ! TO_REFACTOR : rename projection arg to something like model_projection
 // ! TODO : add functionality to resize window
 
@@ -302,7 +345,8 @@ int	draw_model(t_globals *global_state, int fit)
 	parse_map_to_model(global_state, projection);
 	if (fit)
 		zoom_model_to_fit(global_state, projection);
-	// ! wired & doted 🤦‍♂️
+	if (global_state->map.b_lines)
+		draw_wires(global_state, projection);
 	mlx_put_image_to_window(global_state->mlx, global_state->win, \
 		global_state->bitmap.img, 0, 0);
 	// draw_menu(global_state);

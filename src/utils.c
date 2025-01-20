@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:29:08 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/09 16:33:53 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/16 12:48:43 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	draw_line(t_globals *globals, t_point start, t_point end)
 	int		pixels;
 	int		len;
 
-	if (!point_is_in_window(start) && !point_is_in_window(end))
+	if (!point_is_in_window(start) || !point_is_in_window(end))
 		return (0);
 	delta.axis[X_AXIS] = end.axis[X_AXIS] - start.axis[X_AXIS];
 	delta.axis[Y_AXIS] = end.axis[Y_AXIS] - start.axis[Y_AXIS];

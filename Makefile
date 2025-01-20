@@ -6,7 +6,7 @@
 #    By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/03 13:23:49 by moabdels          #+#    #+#              #
-#    Updated: 2025/01/13 13:48:21 by moabdels         ###   ########.fr        #
+#    Updated: 2025/01/20 13:16:49 by moabdels         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,6 +93,9 @@ clean:
 		@echo "🔵 MiniLibX object files cleaned"
 		$(RM) -r $(OBJ_DIR)
 		@echo "🔵 Project Object Files Cleaned!"
+
+test_world_map:
+		./fdf maps/MGDS_WHOLE_WORLD_OCEAN1_L.fdf
 
 # change this to go inside the libraries and run make fclean
 fclean:	clean

@@ -3,5 +3,22 @@
 	"C_Cpp.default.compilerPath": "/usr/bin/gcc",
 	"files.associations": {
 		"fdf.h": "c"
-	}
+	},
+	"makefile.launchConfigurations": [
+		{
+			"cwd": "/home/moabdels/cursus_workspace/working_module/FDF",
+			"binaryPath": "/home/moabdels/cursus_workspace/working_module/FDF/fdf",
+			"binaryArgs": []
+		},
+		{
+			"cwd": "/home/moabdels/cursus_workspace/working_module/FDF",
+			"binaryPath": "/home/moabdels/cursus_workspace/working_module/FDF/fdf",
+			"binaryArgs": ["maps/MGDS_WHOLE_WORLD_OCEAN1_L.fdf"]
+		}
+	],
+	"makefile.configurations": [
+		{
+			"name": "Unnamed configuration 1"
+		}
+	]
 }
