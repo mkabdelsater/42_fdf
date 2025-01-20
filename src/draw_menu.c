@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:02:22 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/20 16:33:33 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:37:05 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,23 @@ static void	draw_settings(t_globals *fdf)
 	line += LINE_SIZE;
 }
 
+static void	draw_color_controls(t_globals *fdf)
+{
+	int	line;
+	line = COLORSCHEME_BOX;
+	draw_string(fdf, MENU_TAB_SIZE, line, "---- COLOR SCHEME ----");
+	line += LINE_SIZE;
+	draw_string(fdf, MENU_TAB_SIZE, line, "0: Default");
+	line += LINE_SIZE;
+	draw_string(fdf, MENU_TAB_SIZE, line, "1: Terrain");
+	line += LINE_SIZE;
+	draw_string(fdf, MENU_TAB_SIZE, line, "2: Black on White");
+	line += LINE_SIZE;
+	draw_string(fdf, MENU_TAB_SIZE, line, "3: White on Black");
+	line += LINE_SIZE;
+}
+
+// ! TO_REFACTOR : lots of things
 void	draw_menu(t_globals *fdf)
 {
 	draw_controls(fdf);
