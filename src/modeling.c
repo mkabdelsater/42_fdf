@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/20 14:58:18 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:01:33 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,7 +308,6 @@ static void	draw_wire(t_point *point, t_globals *global_state, int visual_densit
 	}
 }
 
-
 // ! TO_REFACTOR : magic number
 static void	draw_wires(t_globals *global_state, t_point *wire)
 {
@@ -349,7 +348,7 @@ int	draw_model(t_globals *global_state, int fit)
 		draw_wires(global_state, projection);
 	mlx_put_image_to_window(global_state->mlx, global_state->win, \
 		global_state->bitmap.img, 0, 0);
-	// draw_menu(global_state);
+	draw_menu(global_state);
 	free(projection);
 	t = clock() - t;
 	global_state->map.performance = ((double)t) / CLOCKS_PER_SEC;
