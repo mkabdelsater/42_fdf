@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:02:22 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/20 15:41:26 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:26:52 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,37 @@ static void	draw_controls(t_globals *global_state)
 	line += LINE_SIZE;
 	draw_string(global_state, MENU_TAB_SIZE, line, "A,D: Rotate X Axos");
 	line += LINE_SIZE;
-	draw_string(global_state, MENU_TAB_SIZE, line, "+/- Z Divisor");
+	draw_string(global_state, MENU_TAB_SIZE, line, "+,- Z Divisor");
 	line += LINE_SIZE;
 	draw_string(global_state, MENU_TAB_SIZE, line, "B : Blending");
 	line += LINE_SIZE;
-	draw_string(global_state, MENU_TAB_SIZE, line, "I,F,C: Isometric/Fit/Center");
+	draw_string(global_state, MENU_TAB_SIZE, line, "I,F,C: Isometric,Fit,Center");
 	line += LINE_SIZE;
+}
+
+static void	draw_info(t_globals *fdf)
+{
+	int	line;
+
+	line = DRAWINFO_BOX;
+	draw_string(fdf, MENU_TAB_SIZE, line, "---- INFO ----");
+	line += LINE_SIZE;
+	draw_string(fdf, MENU_TAB_SIZE, line, "Renders: ");
+	draw_number(fdf, MENU_TAB_SIZE + 100, line, fdf->map.renders);
+	line += LINE_SIZE;
+	draw_string(fdf, MENU_TAB_SIZE, line, "Performance (ms): ");
+	draw_number(fdf, MENU_TAB_SIZE + 170, line, fdf->map.performance * 1000);
+	line += LINE_SIZE;
+	draw_string(fdf, MENU_TAB_SIZE, line, "X, Y, Z: [   ] [   ] [   ]");
+	draw_number(fdf, MENU_TAB_SIZE + 100, line, fdf->map.ang[X_AXIS]);
+	draw_number(fdf, MENU_TAB_SIZE + 160, line, fdf->map.ang[Y_AXIS]);
+	draw_number(fdf, MENU_TAB_SIZE + 220, line, fdf->map.ang[Z_AXIS]);
+	line += LINE_SIZE;
+	draw_string(fdf, MENU_TAB_SIZE, line, "Zoom:");
+	draw_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.scale);
+	line += LINE_SIZE;
+	draw_string(fdf, MENU_TAB_SIZE, line, "Z Divisor:");
+	draw_number(fdf, MENU_TAB_SIZE + 110, line, fdf->map.b_range * 10000);
 }
 
 void	draw_menu(t_globals *global_state)
