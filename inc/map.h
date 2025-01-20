@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:23:21 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/13 15:52:01 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:38:47 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../inc/fdf.h"
 
 int		draw_model(t_globals *global_state, int fit);
+void	draw_menu(t_globals *fdf);
 void	load_map(t_map *map, char *path);
 // void	draw_background(t_globals *global_state, int bg_color, int menu_color);
 void	draw_menu(t_globals *global_state);
@@ -27,6 +28,5 @@ void	map_init(t_map *map, bool is_first_init);
 // ? Map Utils
 bool	is_valid_point(char *value);
 int		get_point_color(char *line);
-
 
 #endif

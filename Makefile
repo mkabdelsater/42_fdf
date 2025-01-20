@@ -6,7 +6,7 @@
 #    By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/03 13:23:49 by moabdels          #+#    #+#              #
-#    Updated: 2025/01/20 13:16:49 by moabdels         ###   ########.fr        #
+#    Updated: 2025/01/20 16:39:39 by moabdels         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ MAGENTA = \033[0;95m
 WHITE = \033[0;97m
 CYAN = \033[0;96m
 
-SRC_FILES		=	main map_init map_loading map_utils geometry modeling\
+SRC_FILES		=	main map_init map_loading map_utils geometry modeling \
+					draw_menu \
 					utils get_next_line get_next_line_utils
 
 SRC				= $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
