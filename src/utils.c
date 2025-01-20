@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:29:08 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/20 15:12:59 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:20:26 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,4 +132,14 @@ void	free_2d_vector(char **vec)
 		i++;
 	}
 	free (vec);
+}
+
+void	print_nbr(t_globals *global_state, int x_coord, int y_coord, int nbr)
+{
+	char	*converted_nbr;
+
+	converted_nbr = ft_itoa(nbr);
+	mlx_string_put(global_state->mlx, global_state->win, x_coord, y_coord, \
+		NUMBER_COLOR, converted_nbr);
+	free(converted_nbr);
 }
