@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:02:22 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/20 16:32:47 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:33:33 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void	draw_info(t_globals *fdf)
 	draw_number(fdf, MENU_TAB_SIZE + 110, line, fdf->map.b_range * 10000);
 }
 
-static draw_settings(t_globals *fdf)
+static void	draw_settings(t_globals *fdf)
 {
 	int	line;
 
