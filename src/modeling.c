@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/21 13:33:39 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:49:07 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static void	bend_model_view(t_point *points, int len, float range)
 	}
 }
 
+// ! TO_REFACTOR: put this into it's own file - matrix operations
 
 static void	b_zero_matrix(float (*matrix)[3])
 {
@@ -81,24 +82,9 @@ static void	b_zero_matrix(float (*matrix)[3])
 	}
 }
 
-// ! TO_REFACTOR: put this into it's own file
-
 static void	set_projection_matrix(float (*matrix)[3], int axis, float angle)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < 3)
-	{
-		j = 0;
-		while (j < 3)
-		{
-			matrix[i][j] = 0;
-			j++;
-		}
-		i++;
-	}
+	b_zero_matrix(matrix);
 	if (axis == X_AXIS)
 	{
 		matrix[0][0] = 1;
@@ -165,35 +151,57 @@ static void	rotate_along_axis(t_point *points, t_point *projection, \
 	}
 }
 
-
 static void	orto_projection(t_point *points, t_point *projection, int len)
 {
 	int		i;
 	float	projection_matrix[3][3];
 
-
+	b_zero_matrix(projection_matrix);
+	// !TO_RESEARCH
+	projection_matrix[0][0] = 1;
+	projection_matrix[1][1] = 1;
+	i = 0;
+	while (i < len)
+	{
+		projection[i] = project_point(projection_matrix, points[i]);
+		i++;
+	}
 }
 
 // ! Optimization Angle : each of these functions can/should be applied separately
 // ! to avoid redrawing the map everytime
 
-static void	parse_map_to_model(t_globals *global_state, t_point *projection)
+static void	scale_model(t_point *points, int scale, int len)
 {
-	z_division(projection, global_state->map.z_divisor, global_state->map.len);
-	bend_model_view(projection, global_state->map.len, global_state->map.b_range);
-	if (global_state->map.b_geo)
-		toggle_geography_view(&global_state->map, projection);
-	rotate_along_axis(projection, projection, global_state->map.ang[X_AXIS], \
-		global_state->map.len, X_AXIS);
-	rotate_along_axis(projection, projection, global_state->map.ang[Y_AXIS], \
-		global_state->map.len, Y_AXIS);
-	rotate_along_axis(projection, projection, global_state->map.ang[Z_AXIS], \
-		global_state->map.len, Z_AXIS);
+	int	i;
+
+	i = 0;
+	while (i < len)
+	{
+		points[i].axis[X_AXIS] = points[i].axis[X_AXIS] * scale;
+		points[i].axis[Y_AXIS] = points[i].axis[Y_AXIS] * scale;
+		points[i].axis[Z_AXIS] = points[i].axis[Z_AXIS] * scale;
+		i++;
+	}
+}
+
+static void	parse_map_to_model(t_globals *fdf, t_point *projection)
+{
+	z_division(projection, fdf->map.z_divisor, fdf->map.len);
+	bend_model_view(projection, fdf->map.len, fdf->map.b_range);
+	if (fdf->map.b_geo)
+		toggle_geography_view(&fdf->map, projection);
+	rotate_along_axis(projection, projection, fdf->map.ang[X_AXIS], \
+		fdf->map.len, X_AXIS);
+	rotate_along_axis(projection, projection, fdf->map.ang[Y_AXIS], \
+		fdf->map.len, Y_AXIS);
+	rotate_along_axis(projection, projection, fdf->map.ang[Z_AXIS], \
+		fdf->map.len, Z_AXIS);
 	// if (global_state->map.b_geo && global_state->map.b_shadow)
 	// 	shadow(projection, global_state->map.len);
-	orto_projection(projection, projection, global_state->map.len);
-	// scale(projection, global_state->map.scale, global_state->map.len);
-	// translate(projection, global_state->map.source, global_state->map.len);
+	orto_projection(projection, projection, fdf->map.len);
+	scale_model(projection, fdf->map.scale, fdf->map.len);
+	translate_model(projection, fdf->map.source, fdf->map.len);
 }
 
 static void	duplicate_map(t_point *src, t_point *dst, int len)
