@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 13:15:55 by moabdels          #+#    #+#             */
-/*   Updated: 2024/12/20 14:29:16 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:04:42 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,12 @@ void	map_init(t_map *map, bool is_first_init)
 		map->limits.axis[Z_AXIS] = 0;
 		map->z_min = 0;
 	}
-	map->b_lines = 1;
-	map->b_dots = 0;
-	map->b_pluslines = 0;
-	map->b_geo = 0;
-	map->b_stars = 0;
+	map->b_lines = true;
+	map->b_dots = false;
+	map->b_pluslines = false;
+	map->b_geo = false;
+	map->b_stars = false;
+	map->b_shadow = true;
 	map->scale = 1;
 	map->z_divisor = 1;
 	map->b_range = 0;
