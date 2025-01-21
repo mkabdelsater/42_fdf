@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/21 12:59:48 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:24:19 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,7 +216,7 @@ static void	set_bitmap_color(char *bitmap_buffer, int color, int alpha, int endi
 
 // ! TO_REFACTOR: what does `pixel` mean here??
 
-static void	draw_background(t_globals *global_state, int bg_color, int menu_color)
+static void	draw_background(t_globals *fdf, int bg_color, int menu_color)
 {
 	int	axis[2];
 	int	pixel_index;
@@ -224,8 +224,8 @@ static void	draw_background(t_globals *global_state, int bg_color, int menu_colo
 
 	axis[Y_AXIS] = 0;
 	axis[X_AXIS] = 0;
-	bg_color = convert_color_to_32bit(global_state, bg_color);
-	menu_color = convert_color_to_32bit(global_state, menu_color);
+	bg_color = convert_color_to_32bit(fdf, bg_color);
+	menu_color = convert_color_to_32bit(fdf, menu_color);
 	while (axis[Y_AXIS] < WIN_HEIGHT)
 	{
 		while (axis[X_AXIS] < WIN_WIDTH)
@@ -234,10 +234,9 @@ static void	draw_background(t_globals *global_state, int bg_color, int menu_colo
 				color = menu_color;
 			else
 				color = bg_color;
-			pixel_index = (axis[Y_AXIS] * global_state->bitmap.lines) + \
-				(axis[X_AXIS] * 4);
-			set_bitmap_color(&global_state->bitmap.buffer[pixel_index], \
-				color, 1, global_state->bitmap.endian);
+			pixel_index = (axis[Y_AXIS] * fdf->bitmap.lines) + (axis[X_AXIS] * 4);
+			set_bitmap_color(&fdf->bitmap.buffer[pixel_index], \
+				color, 1, fdf->bitmap.endian);
 			axis[X_AXIS]++;
 		}
 		axis[Y_AXIS]++;
@@ -337,7 +336,7 @@ int	draw_model(t_globals *fdf, int fit)
 	projection = malloc(fdf->map.len * sizeof(t_point));
 	if (projection == NULL)
 		error_out("Failed Alocating memory for projected map in draw_model()");
-	fdf->map.renders = fdf->map.renders + 1;
+	fdf->map.renders++;
 	draw_background(fdf, fdf->map.colors.back, \
 		fdf->map.colors.menu);
 	duplicate_map(fdf->map.points, projection, fdf->map.len);
