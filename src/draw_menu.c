@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:02:22 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/20 16:37:05 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:04:41 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void	draw_controls(t_globals *global_state)
 	line = COLORSCHEME_BOX;
 	draw_string(global_state, MENU_TAB_SIZE, line, "---- CONTROLS ----");
 	line += LINE_SIZE;
-	draw_string(global_state, MENU_TAB_SIZE, line, "Scroll: Zoom In/Out");
+	draw_string(global_state, MENU_TAB_SIZE, line, "Scroll: ZoomIn/Out");
 	line += LINE_SIZE;
-	draw_string(global_state, MENU_TAB_SIZE, line, "LMB: Rotate Model (X/Y Axis)");
+	draw_string(global_state, MENU_TAB_SIZE, line, "Left Click: Rotate X/Y axis");
 	line += LINE_SIZE;
 	draw_string(global_state, MENU_TAB_SIZE, line, "Arrow Keys: Rotate along X/Y");
 	line += LINE_SIZE;
@@ -79,21 +79,21 @@ static void	draw_settings(t_globals *fdf)
 	int	line;
 
 	line = MAPINFO_BOX;
-	draw_string(fdf, MENU_TAB_SIZE, line, "---- SETTINGS ----");
+	draw_string(fdf, MENU_TAB_SIZE, line, "---- MAP INFO ----");
 	line += LINE_SIZE;
 	draw_string(fdf, MENU_TAB_SIZE, line, "Size:");
 	draw_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.len);
 	line += LINE_SIZE;
-	draw_string(fdf, MENU_TAB_SIZE, line, "Max X:");
+	draw_string(fdf, MENU_TAB_SIZE, line, "MaxX:");
 	draw_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.limits.axis[X_AXIS]);
 	line += LINE_SIZE;
-	draw_string(fdf, MENU_TAB_SIZE, line, "Max Y:");
+	draw_string(fdf, MENU_TAB_SIZE, line, "MaxY:");
 	draw_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.limits.axis[Y_AXIS]);
 	line += LINE_SIZE;
-	draw_string(fdf, MENU_TAB_SIZE, line, "Max Z:");
+	draw_string(fdf, MENU_TAB_SIZE, line, "MaxZ:");
 	draw_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.limits.axis[Z_AXIS]);
 	line += LINE_SIZE;
-	draw_string(fdf, MENU_TAB_SIZE, line, "Min Z:");
+	draw_string(fdf, MENU_TAB_SIZE, line, "MinZ:");
 	draw_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.z_min);
 	line += LINE_SIZE;
 }
@@ -102,15 +102,15 @@ static void	draw_color_controls(t_globals *fdf)
 {
 	int	line;
 	line = COLORSCHEME_BOX;
-	draw_string(fdf, MENU_TAB_SIZE, line, "---- COLOR SCHEME ----");
+	draw_string(fdf, MENU_TAB_SIZE, line, "---- COLORSCHEME ----");
 	line += LINE_SIZE;
 	draw_string(fdf, MENU_TAB_SIZE, line, "0: Default");
 	line += LINE_SIZE;
 	draw_string(fdf, MENU_TAB_SIZE, line, "1: Terrain");
 	line += LINE_SIZE;
-	draw_string(fdf, MENU_TAB_SIZE, line, "2: Black on White");
+	draw_string(fdf, MENU_TAB_SIZE, line, "2: Black & White");
 	line += LINE_SIZE;
-	draw_string(fdf, MENU_TAB_SIZE, line, "3: White on Black");
+	draw_string(fdf, MENU_TAB_SIZE, line, "3: White & Black");
 	line += LINE_SIZE;
 }
 
