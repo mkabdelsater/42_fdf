@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 15:11:01 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/21 13:08:51 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:14:55 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,6 @@ static void	map_get_points(t_map *map)
 		if (map->memory[i] == '\0')
 			break ;
 	}
-
 	free(line);
 	ft_printf("\r 🟢 %d Points read successfully!\n", point_count);
 }
