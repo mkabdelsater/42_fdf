@@ -6,11 +6,12 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:56:38 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/21 15:15:54 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:38:43 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
+#include "../inc/map.h"
 #include "../inc/keycodes.h"
 
 // !TO_REFACTOR
@@ -47,6 +48,43 @@ static void	rotation_control(int key, t_globals *fdf)
 		modify_angle(&fdf->map.ang[Z_AXIS], -ang);
 }
 
+static void set_view_to_topdown(t_map *map)
+{
+	map->b_geo = 0;
+	map->ang[X_AXIS] = 90;
+	map->ang[Y_AXIS] = 0;
+	map->ang[Z_AXIS] = 0;
+	map->b_range = 0;
+	map->source.axis[X_AXIS] = ((WIN_WIDTH - MENU_WIDTH) / 2) + MENU_WIDTH;
+	map->source.axis[Y_AXIS] = WIN_HEIGHT / 2;
+}
+
+static void	map_controls_a(int key, t_globals *fdf)
+{
+	if (key == KEY_ESC)
+		terminate(fdf);
+	if (key == KEY_R)
+	{
+		map_init(&fdf->map, false);
+		fdf->map.proportion = \
+			fdf->map.limits.axis[Z_AXIS] / fdf->map.limits.axis[X_AXIS];
+		if (fdf->map.proportion > 0.5)
+			fdf->map.z_divisor = fdf->map.proportion * 30;
+		color_map_points(&fdf->map);
+		draw_model(fdf, FIT);
+	}
+	if (key == KEY_C)
+	{
+		fdf->map.source.axis[X_AXIS] = ((WIN_WIDTH - MENU_WIDTH) / 2) + MENU_WIDTH;
+		fdf->map.source.axis[Y_AXIS] = WIN_HEIGHT / 2;
+	}
+	if (key == KEY_P)
+	{
+		set_view_to_topdown(&fdf->map);
+		draw_model(fdf, FIT);
+	}
+}
+
 // ? the signature is based on the prototypes found in the MLX library
 
 int	on_key_down(int key, void *param)
@@ -55,4 +93,5 @@ int	on_key_down(int key, void *param)
 
 	fdf = (t_globals *)param;
 	rotation_control(key, fdf);
+	map_controls_a(key, fdf);
 }

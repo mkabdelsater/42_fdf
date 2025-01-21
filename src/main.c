@@ -6,12 +6,19 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:55:14 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/21 13:20:10 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:25:31 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 #include "../inc/map.h"
+
+int		terminate(t_globals *fdf)
+{
+	mlx_destroy_window(fdf->mlx, fdf->win);
+	free(fdf->map.points);
+	exit(EXIT_SUCCESS);
+}
 
 void	system_init(t_globals *fdf)
 {
