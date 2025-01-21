@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 15:11:01 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/09 16:26:09 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:08:51 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ static void	map_get_points(t_map *map)
 static void	set_map_limits(t_map *map)
 {
 	static int	i = -1;
-	static int	elem_count;
+	static int	elem_count = 0;
 
 	while (map->memory[++i])
 	{
