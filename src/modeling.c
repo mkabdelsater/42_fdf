@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/21 13:49:07 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:52:21 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,20 @@ static void	scale_model(t_point *points, int scale, int len)
 		points[i].axis[X_AXIS] = points[i].axis[X_AXIS] * scale;
 		points[i].axis[Y_AXIS] = points[i].axis[Y_AXIS] * scale;
 		points[i].axis[Z_AXIS] = points[i].axis[Z_AXIS] * scale;
+		i++;
+	}
+}
+
+static void	translate_model(t_point *points, t_point dest, int len)
+{
+	int	i;
+
+	i = 0;
+	while (i < len)
+	{
+		points[i].axis[X_AXIS] = points[i].axis[X_AXIS] + dest.axis[X_AXIS];
+		points[i].axis[Y_AXIS] = points[i].axis[Y_AXIS] + dest.axis[Y_AXIS];
+		points[i].axis[Z_AXIS] = points[i].axis[Z_AXIS] + dest.axis[Z_AXIS];
 		i++;
 	}
 }
