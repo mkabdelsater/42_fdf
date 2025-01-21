@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/21 13:24:19 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:33:39 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,25 @@ static void	bend_model_view(t_point *points, int len, float range)
 		bend_factor = (pow(points[i].axis[X_AXIS], 2) * range) + \
 			(pow(points[i].axis[Y_AXIS], 2) * range);
 		points[i].axis[Z_AXIS] -= bend_factor;
+		i++;
+	}
+}
+
+
+static void	b_zero_matrix(float (*matrix)[3])
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < 3)
+	{
+		j = 0;
+		while (j < 3)
+		{
+			matrix[i][j] = 0;
+			j++;
+		}
 		i++;
 	}
 }
@@ -121,7 +140,7 @@ static t_point	project_point(float matrix[3][3], t_point point)
 		j = 0;
 		while (j < 3)
 		{
-			result.axis[i] += matrix[i][j] *point.axis[j];
+			result.axis[i] += matrix[i][j] * point.axis[j];
 			j++;
 		}
 		i++;
@@ -146,6 +165,15 @@ static void	rotate_along_axis(t_point *points, t_point *projection, \
 	}
 }
 
+
+static void	orto_projection(t_point *points, t_point *projection, int len)
+{
+	int		i;
+	float	projection_matrix[3][3];
+
+
+}
+
 // ! Optimization Angle : each of these functions can/should be applied separately
 // ! to avoid redrawing the map everytime
 
@@ -163,7 +191,7 @@ static void	parse_map_to_model(t_globals *global_state, t_point *projection)
 		global_state->map.len, Z_AXIS);
 	// if (global_state->map.b_geo && global_state->map.b_shadow)
 	// 	shadow(projection, global_state->map.len);
-	// orto_projection(projection, projection, global_state->map.len);
+	orto_projection(projection, projection, global_state->map.len);
 	// scale(projection, global_state->map.scale, global_state->map.len);
 	// translate(projection, global_state->map.source, global_state->map.len);
 }
