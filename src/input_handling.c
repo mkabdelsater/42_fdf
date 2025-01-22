@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:56:38 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 11:56:12 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:13:20 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,28 @@ static void	map_controls_b(int key, t_globals *fdf)
 		fdf->keys.b_key_ctrl = 1;
 }
 
+static void map_controls_c(int key, t_globals *fdf)
+{
+	if (key == KEY_B && fdf->keys.b_key_ctrl)
+		fdf->map.b_range -= 0.0001;
+	if (key == KEY_B && !fdf->keys.b_key_ctrl)
+		fdf->map.b_range += 0.0001;
+	if ((key == KEY_SUM || key == KEY_SUM2) && fdf->keys.b_key_ctrl)
+		fdf->map.scale *= 1.5;
+	if ((key == KEY_RES || key == KEY_RES2) && fdf->keys.b_key_ctrl)
+		fdf->map.scale /= 1.5;
+	if ((key == KEY_SUM || key == KEY_SUM2) && fdf->map.z_divisor > 1)
+		fdf->map.z_divisor -= 10;
+	if (key == KEY_I)
+	{
+		set_view_to_isometric(&fdf->map);
+		render_model(fdf, FIT);
+	}
+}
+
 // ? the signature is based on the prototypes found in the MLX library
 // ? the return value is mask?
+// ! TO_REFACTOR : there are actions that trigger re-rendering twice, bad!
 
 int	on_key_down(int key, void *param)
 {

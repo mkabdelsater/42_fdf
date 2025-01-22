@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:55:14 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 11:45:10 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:09:10 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	error_out(char *err_msg)
 	ft_putstr_fd(err_msg, 2);
 	exit(EXIT_FAILURE);
 }
+
+// !TODO Add a stats menu and a controls menu and an options to flip between them
 
 int	main(int argv, char **argc)
 {
