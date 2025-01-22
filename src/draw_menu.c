@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:02:22 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 14:15:32 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:19:43 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static void	draw_settings(t_globals *fdf)
 	render_string(fdf, MENU_TAB_SIZE, line, "---- MAP INFO ----");
 	line += LINE_SIZE;
 	render_string(fdf, MENU_TAB_SIZE, line, "Size:");
-	render_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.len);
+	render_number(fdf, MENU_TAB_SIZE + 40, line, fdf->map.len);
 	line += LINE_SIZE;
 	render_string(fdf, MENU_TAB_SIZE, line, "MaxX:");
 	render_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.limits.axis[X_AXIS]);

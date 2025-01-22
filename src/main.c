@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:55:14 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 12:09:10 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:53:56 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	error_out(char *err_msg)
 	exit(EXIT_FAILURE);
 }
 
-// !TODO Add a stats menu and a controls menu and an options to flip between them
+// !TODO Add a stats menu, a controls menu and an option to flip between them
 
 int	main(int argv, char **argc)
 {
@@ -58,7 +58,7 @@ int	main(int argv, char **argc)
 	load_map(&fdf.map, argc[1]);
 	system_init(&fdf);
 	if (render_model(&fdf, FIT) < 0)
-		error_out("Error Drawing Model");
+		error_out("Error Rendering Model");
 	mlx_hook(fdf.win, 2, 1L << 0, on_key_down, &fdf);
 	mlx_hook(fdf.win, 17, 0, terminate, &fdf);
 	mlx_loop(fdf.mlx);

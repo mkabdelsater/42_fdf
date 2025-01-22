@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 15:11:01 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 13:57:59 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:59:03 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,6 @@
 static void	set_map_limits(t_map *map);
 static void	map_get_points(t_map *map);
 static char	*parse_map(int fd);
-
-void	color_map_points(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (i < map->len)
-	{
-		set_point_color((int)map->limits.axis[Z_AXIS], map->z_min, \
-		&map->points[i], map->colors);
-		i++;
-	}
-}
 
 void	load_map(t_map *map, char *path)
 {
@@ -174,27 +161,4 @@ static void	set_map_limits(t_map *map)
 		error_out("Bad Map Format - Number of Elements per line is inconsistent");
 	map->limits.axis[Y_AXIS]++;
 	map->len = map->limits.axis[X_AXIS] * map->limits.axis[Y_AXIS];
-}
-
-void	set_point_color(int max, int min, t_point *point, t_colors colors)
-{
-	point->painted = true;
-	point->color = DEFAULT_COLOR;
-	if (point->color_hex > 0)
-	{
-		point->color = point->color_hex;
-		return ;
-	}
-	if (point->axis[Z_AXIS] == max)
-		point->color = colors.top;
-	else if (point->axis[Z_AXIS] == 0)
-		point->color = colors.ground;
-	else if (point->axis[Z_AXIS] == min && min != 0)
-		point->color = colors.bottom;
-	else if (point->axis[Z_AXIS] > 0)
-		point->color = gradient(colors.ground, colors.top, \
-		max, point->axis[Z_AXIS]);
-	else
-		point->color = gradient(colors.bottom, colors.ground, \
-			-min, - (min - point->axis[Z_AXIS]));
 }
