@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:23:21 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 11:45:10 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:22:31 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	set_point_color(int max, int min, t_point *point, t_colors colors);
 void	color_map_points(t_map *map);
 void	generate_stars(t_globals *global_state);
 void	map_init(t_map *map, bool is_first_init);
+void	set_view_to_isometric(t_map *map);
 
 // ? Map Utils
 bool	is_valid_point(char *value);

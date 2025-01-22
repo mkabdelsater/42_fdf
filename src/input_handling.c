@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:56:38 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 12:13:20 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:23:25 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ int	on_key_down(int key, void *param)
 	rotation_control(key, fdf);
 	map_controls_a(key, fdf);
 	map_controls_b(key, fdf);
+	map_controls_c(key, fdf);
 	render_model(fdf, FREE);
 	return (0);
 }

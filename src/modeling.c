@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 11:45:10 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:21:40 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -372,6 +372,17 @@ static void	draw_wires(t_globals *global_state, t_point *wire)
 		draw_wire(&wire[i], global_state, visual_density, i / global_state->map.limits.axis[X_AXIS]);
 		i += global_state->map.limits.axis[X_AXIS] * visual_density;
 	}
+}
+
+void	set_view_to_isometric(t_map *map)
+{
+	map->b_geo = 0;
+	map->ang[X_AXIS] = 30;
+	map->ang[Y_AXIS] = 330;
+	map->ang[Z_AXIS] = 30;
+	map->b_range = 0;
+	map->source.axis[X_AXIS] = ((WIN_WIDTH - MENU_WIDTH) / 2) + MENU_WIDTH;
+	map->source.axis[Y_AXIS] = WIN_HEIGHT / 2;
 }
 
 // ! TO_REFACTOR : rename projection arg to something like model_projection
