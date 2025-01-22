@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:02:22 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/21 14:04:41 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:58:24 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	draw_info(t_globals *fdf)
 	draw_string(fdf, MENU_TAB_SIZE, line, "Renders: ");
 	draw_number(fdf, MENU_TAB_SIZE + 100, line, fdf->map.renders);
 	line += LINE_SIZE;
-	draw_string(fdf, MENU_TAB_SIZE, line, "Performance (ms): ");
+	draw_string(fdf, MENU_TAB_SIZE, line, "Performance(ms): ");
 	draw_number(fdf, MENU_TAB_SIZE + 170, line, fdf->map.performance * 1000);
 	line += LINE_SIZE;
 	draw_string(fdf, MENU_TAB_SIZE, line, "X, Y, Z: [   ] [   ] [   ]");

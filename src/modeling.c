@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 12:27:54 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:53:43 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -332,7 +332,7 @@ static void	zoom_model_to_fit(t_globals *fdf, t_point *projection)
 	}
 }
 
-static void	draw_wire(t_point *point, t_globals *global_state, int visual_density, int line)
+static void	draw_wire(t_point *point, t_globals *fdf, int visual_density, int line)
 {
 	int	i;
 	int	x_length;
@@ -340,7 +340,7 @@ static void	draw_wire(t_point *point, t_globals *global_state, int visual_densit
 	int	x_limit;
 
 	i = 0;
-	x_limit = (int)global_state->map.limits.axis[X_AXIS];
+	x_limit = (int)fdf->map.limits.axis[X_AXIS];
 	while (i < x_limit)
 	{
 		x_length = i + visual_density;
@@ -349,28 +349,28 @@ static void	draw_wire(t_point *point, t_globals *global_state, int visual_densit
 		y_length = i + x_limit * visual_density;
 		if (point[i].painted)
 		{
-			draw_line(global_state, point[i], point[x_length]);
-			if (line + visual_density < (int)global_state->map.limits.axis[Y_AXIS])
-				draw_line(global_state, point[i], point[y_length]);
+			draw_line(fdf, point[i], point[x_length]);
+			if (line + visual_density < (int)fdf->map.limits.axis[Y_AXIS])
+				draw_line(fdf, point[i], point[y_length]);
 		}
 		i += visual_density;
 	}
 }
 
 // ! TO_REFACTOR : magic number
-static void	draw_wires(t_globals *global_state, t_point *wire)
+static void	draw_wires(t_globals *fdf, t_point *wire)
 {
 	int	i;
 	int	visual_density;
 
-	visual_density = 8 / global_state->map.scale;
+	visual_density = 8 / fdf->map.scale;
 	if (visual_density == 0)
 		visual_density = 1;
 	i = 0;
-	while (i < global_state->map.len)
+	while (i < fdf->map.len)
 	{
-		draw_wire(&wire[i], global_state, visual_density, i / global_state->map.limits.axis[X_AXIS]);
-		i += global_state->map.limits.axis[X_AXIS] * visual_density;
+		draw_wire(&wire[i], fdf, visual_density, i / fdf->map.limits.axis[X_AXIS]);
+		i += fdf->map.limits.axis[X_AXIS] * visual_density;
 	}
 }
 
