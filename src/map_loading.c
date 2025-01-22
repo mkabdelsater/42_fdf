@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 15:11:01 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/21 13:14:55 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:57:59 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ static int	load_points(char *line, t_map *map, int line_count)
 		if (!is_valid_point(&lines_vector[i][0]))
 			error_out("The File is empty or wrongly formatted");
 		map->points[point_index].axis[Z_AXIS] = ft_atoi(&lines_vector[i][0]);
-		map->points[point_index].axis[X_AXIS] = i - map->limits.axis[Y_AXIS] / 2;
+		map->points[point_index].axis[X_AXIS] = i - map->limits.axis[X_AXIS] / 2;
 		map->points[point_index].axis[Y_AXIS] = line_count - map->limits.axis[Y_AXIS] / 2;
 		map->points[point_index].painted = true;
 		map->points[point_index].color = DEFAULT_COLOR;

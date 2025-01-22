@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:55:52 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/21 15:25:54 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:53:07 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define FIT_MARGIN	50
 # define FIT		1
 # define FREE		0
-# define LONG		1
 # define LAT		0
+# define LONG		1
 
 # define FIREBRICK_RED	0xc1272d
 # define LIME_GREEN		0x33cc55

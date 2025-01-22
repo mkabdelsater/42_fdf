@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 12:53:43 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:58:54 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -406,6 +406,7 @@ int	render_model(t_globals *fdf, int fit)
 		zoom_model_to_fit(fdf, projection);
 	if (fdf->map.b_lines)
 		draw_wires(fdf, projection);
+	// if (fdf->map.b_dots)
 	mlx_put_image_to_window(fdf->mlx, fdf->win, \
 		fdf->bitmap.img, 0, 0);
 	draw_menu(fdf);

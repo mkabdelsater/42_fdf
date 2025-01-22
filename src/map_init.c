@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 13:15:55 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/21 13:04:42 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:40:34 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	map_init(t_map *map, bool is_first_init)
 	map->scale = 1;
 	map->z_divisor = 1;
 	map->b_range = 0;
-	map->source.axis[X_AXIS] = ((WIN_WIDTH - MENU_WIDTH) / 2) + MENU_WIDTH;
-	map->source.axis[Y_AXIS] = WIN_HEIGHT / 2;
-	map->source.axis[Z_AXIS] = 0;
+	// map->source.axis[X_AXIS] = 0;//((WIN_WIDTH - MENU_WIDTH) / 2) - MENU_WIDTH;
+	// map->source.axis[Y_AXIS] = WIN_HEIGHT / 2;
+	// map->source.axis[Z_AXIS] = 0;
 	map->ang[X_AXIS] = 0;
 	map->ang[Y_AXIS] = 0;
 	map->ang[Z_AXIS] = 0;
