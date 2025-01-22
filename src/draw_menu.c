@@ -6,17 +6,17 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:02:22 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 14:07:26 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:15:32 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 #include "../inc/utils.h"
 
-#define CONTROL_BOX		650
 #define DRAWINFO_BOX	40
 #define MAPINFO_BOX		280
 #define COLORSCHEME_BOX	480
+#define CONTROL_BOX		650
 #define LINE_SIZE		30
 #define MENU_TAB_SIZE	30
 
@@ -24,7 +24,7 @@ static void	draw_controls(t_globals *global_state)
 {
 	int	line;
 
-	line = COLORSCHEME_BOX;
+	line = CONTROL_BOX;
 	render_string(global_state, MENU_TAB_SIZE, line, "---- CONTROLS ----");
 	line += LINE_SIZE;
 	render_string(global_state, MENU_TAB_SIZE, line, "Scroll: ZoomIn/Out");
@@ -101,6 +101,7 @@ static void	draw_settings(t_globals *fdf)
 static void	draw_color_controls(t_globals *fdf)
 {
 	int	line;
+
 	line = COLORSCHEME_BOX;
 	render_string(fdf, MENU_TAB_SIZE, line, "---- COLORSCHEME ----");
 	line += LINE_SIZE;
