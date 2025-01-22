@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 13:58:54 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:00:27 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -328,7 +328,7 @@ static void	zoom_model_to_fit(t_globals *fdf, t_point *projection)
 	{
 		duplicate_map(fdf->map.points, projection, fdf->map.len);
 		parse_map_to_model(fdf, projection);
-		fdf->map.scale = fdf->map.scale + 0.2;
+		fdf->map.scale += 0.2;
 	}
 }
 

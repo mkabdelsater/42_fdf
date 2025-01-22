@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:02:22 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 12:58:24 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:07:26 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,27 @@ static void	draw_controls(t_globals *global_state)
 	int	line;
 
 	line = COLORSCHEME_BOX;
-	draw_string(global_state, MENU_TAB_SIZE, line, "---- CONTROLS ----");
+	render_string(global_state, MENU_TAB_SIZE, line, "---- CONTROLS ----");
 	line += LINE_SIZE;
-	draw_string(global_state, MENU_TAB_SIZE, line, "Scroll: ZoomIn/Out");
+	render_string(global_state, MENU_TAB_SIZE, line, "Scroll: ZoomIn/Out");
 	line += LINE_SIZE;
-	draw_string(global_state, MENU_TAB_SIZE, line, "Left Click: Rotate X/Y axis");
+	render_string(global_state, MENU_TAB_SIZE, line, "Left Click: Rotate X/Y axis");
 	line += LINE_SIZE;
-	draw_string(global_state, MENU_TAB_SIZE, line, "Arrow Keys: Rotate along X/Y");
+	render_string(global_state, MENU_TAB_SIZE, line, "Arrow Keys: Rotate along X/Y");
 	line += LINE_SIZE;
-	draw_string(global_state, MENU_TAB_SIZE, line, "RMB: Translate Model");
+	render_string(global_state, MENU_TAB_SIZE, line, "RMB: Translate Model");
 	line += LINE_SIZE;
-	draw_string(global_state, MENU_TAB_SIZE, line, "Q,E: Rotate Z Axis");
+	render_string(global_state, MENU_TAB_SIZE, line, "Q,E: Rotate Z Axis");
 	line += LINE_SIZE;
-	draw_string(global_state, MENU_TAB_SIZE, line, "W,S: Rotate Y Axis");
+	render_string(global_state, MENU_TAB_SIZE, line, "W,S: Rotate Y Axis");
 	line += LINE_SIZE;
-	draw_string(global_state, MENU_TAB_SIZE, line, "A,D: Rotate X Axos");
+	render_string(global_state, MENU_TAB_SIZE, line, "A,D: Rotate X Axos");
 	line += LINE_SIZE;
-	draw_string(global_state, MENU_TAB_SIZE, line, "+,- Z Divisor");
+	render_string(global_state, MENU_TAB_SIZE, line, "+,- Z Divisor");
 	line += LINE_SIZE;
-	draw_string(global_state, MENU_TAB_SIZE, line, "B : Blending");
+	render_string(global_state, MENU_TAB_SIZE, line, "B : Blending");
 	line += LINE_SIZE;
-	draw_string(global_state, MENU_TAB_SIZE, line, "I,F,C: Isometric,Fit,Center");
+	render_string(global_state, MENU_TAB_SIZE, line, "I,F,C: Isometric,Fit,Center");
 	line += LINE_SIZE;
 }
 
@@ -54,24 +54,24 @@ static void	draw_info(t_globals *fdf)
 	int	line;
 
 	line = DRAWINFO_BOX;
-	draw_string(fdf, MENU_TAB_SIZE, line, "---- INFO ----");
+	render_string(fdf, MENU_TAB_SIZE, line, "---- INFO ----");
 	line += LINE_SIZE;
-	draw_string(fdf, MENU_TAB_SIZE, line, "Renders: ");
-	draw_number(fdf, MENU_TAB_SIZE + 100, line, fdf->map.renders);
+	render_string(fdf, MENU_TAB_SIZE, line, "Renders: ");
+	render_number(fdf, MENU_TAB_SIZE + 100, line, fdf->map.renders);
 	line += LINE_SIZE;
-	draw_string(fdf, MENU_TAB_SIZE, line, "Performance(ms): ");
-	draw_number(fdf, MENU_TAB_SIZE + 170, line, fdf->map.performance * 1000);
+	render_string(fdf, MENU_TAB_SIZE, line, "Performance(ms): ");
+	render_number(fdf, MENU_TAB_SIZE + 170, line, fdf->map.performance * 1000);
 	line += LINE_SIZE;
-	draw_string(fdf, MENU_TAB_SIZE, line, "X, Y, Z: [   ] [   ] [   ]");
-	draw_number(fdf, MENU_TAB_SIZE + 100, line, fdf->map.ang[X_AXIS]);
-	draw_number(fdf, MENU_TAB_SIZE + 160, line, fdf->map.ang[Y_AXIS]);
-	draw_number(fdf, MENU_TAB_SIZE + 220, line, fdf->map.ang[Z_AXIS]);
+	render_string(fdf, MENU_TAB_SIZE, line, "X, Y, Z: [   ] [   ] [   ]");
+	render_number(fdf, MENU_TAB_SIZE + 100, line, fdf->map.ang[X_AXIS]);
+	render_number(fdf, MENU_TAB_SIZE + 160, line, fdf->map.ang[Y_AXIS]);
+	render_number(fdf, MENU_TAB_SIZE + 220, line, fdf->map.ang[Z_AXIS]);
 	line += LINE_SIZE;
-	draw_string(fdf, MENU_TAB_SIZE, line, "Zoom:");
-	draw_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.scale);
+	render_string(fdf, MENU_TAB_SIZE, line, "Zoom:");
+	render_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.scale);
 	line += LINE_SIZE;
-	draw_string(fdf, MENU_TAB_SIZE, line, "Z Divisor:");
-	draw_number(fdf, MENU_TAB_SIZE + 110, line, fdf->map.b_range * 10000);
+	render_string(fdf, MENU_TAB_SIZE, line, "Z Divisor:");
+	render_number(fdf, MENU_TAB_SIZE + 110, line, fdf->map.b_range * 10000);
 }
 
 static void	draw_settings(t_globals *fdf)
@@ -79,22 +79,22 @@ static void	draw_settings(t_globals *fdf)
 	int	line;
 
 	line = MAPINFO_BOX;
-	draw_string(fdf, MENU_TAB_SIZE, line, "---- MAP INFO ----");
+	render_string(fdf, MENU_TAB_SIZE, line, "---- MAP INFO ----");
 	line += LINE_SIZE;
-	draw_string(fdf, MENU_TAB_SIZE, line, "Size:");
-	draw_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.len);
+	render_string(fdf, MENU_TAB_SIZE, line, "Size:");
+	render_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.len);
 	line += LINE_SIZE;
-	draw_string(fdf, MENU_TAB_SIZE, line, "MaxX:");
-	draw_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.limits.axis[X_AXIS]);
+	render_string(fdf, MENU_TAB_SIZE, line, "MaxX:");
+	render_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.limits.axis[X_AXIS]);
 	line += LINE_SIZE;
-	draw_string(fdf, MENU_TAB_SIZE, line, "MaxY:");
-	draw_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.limits.axis[Y_AXIS]);
+	render_string(fdf, MENU_TAB_SIZE, line, "MaxY:");
+	render_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.limits.axis[Y_AXIS]);
 	line += LINE_SIZE;
-	draw_string(fdf, MENU_TAB_SIZE, line, "MaxZ:");
-	draw_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.limits.axis[Z_AXIS]);
+	render_string(fdf, MENU_TAB_SIZE, line, "MaxZ:");
+	render_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.limits.axis[Z_AXIS]);
 	line += LINE_SIZE;
-	draw_string(fdf, MENU_TAB_SIZE, line, "MinZ:");
-	draw_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.z_min);
+	render_string(fdf, MENU_TAB_SIZE, line, "MinZ:");
+	render_number(fdf, MENU_TAB_SIZE + 80, line, fdf->map.z_min);
 	line += LINE_SIZE;
 }
 
@@ -102,15 +102,15 @@ static void	draw_color_controls(t_globals *fdf)
 {
 	int	line;
 	line = COLORSCHEME_BOX;
-	draw_string(fdf, MENU_TAB_SIZE, line, "---- COLORSCHEME ----");
+	render_string(fdf, MENU_TAB_SIZE, line, "---- COLORSCHEME ----");
 	line += LINE_SIZE;
-	draw_string(fdf, MENU_TAB_SIZE, line, "0: Default");
+	render_string(fdf, MENU_TAB_SIZE, line, "0: Default");
 	line += LINE_SIZE;
-	draw_string(fdf, MENU_TAB_SIZE, line, "1: Terrain");
+	render_string(fdf, MENU_TAB_SIZE, line, "1: Terrain");
 	line += LINE_SIZE;
-	draw_string(fdf, MENU_TAB_SIZE, line, "2: Black & White");
+	render_string(fdf, MENU_TAB_SIZE, line, "2: Black & White");
 	line += LINE_SIZE;
-	draw_string(fdf, MENU_TAB_SIZE, line, "3: White & Black");
+	render_string(fdf, MENU_TAB_SIZE, line, "3: White & Black");
 	line += LINE_SIZE;
 }
 

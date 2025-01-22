@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:29:08 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 12:57:25 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:07:26 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ void	free_2d_vector(char **vec)
 	free (vec);
 }
 
-void	draw_number(t_globals *fdf, int x_coord, int y_coord, int nbr)
+void	render_number(t_globals *fdf, int x_coord, int y_coord, int nbr)
 {
 	char	*converted_nbr;
 
@@ -144,7 +144,7 @@ void	draw_number(t_globals *fdf, int x_coord, int y_coord, int nbr)
 	free(converted_nbr);
 }
 
-void	draw_string(t_globals *fdf, int x_coord, int y_coord, char *str)
+void	render_string(t_globals *fdf, int x_coord, int y_coord, char *str)
 {
 	mlx_string_put(fdf->mlx, fdf->win, x_coord, y_coord, \
 		TEXT_COLOR, str);
