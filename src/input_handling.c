@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:56:38 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 11:45:10 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:56:12 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,24 @@ static void	map_controls_a(int key, t_globals *fdf)
 	}
 }
 
+static void	map_controls_b(int key, t_globals *fdf)
+{
+	if (key == KEY_D)
+		fdf->map.b_dots = !fdf->map.b_dots;
+	if (key == KEY_L)
+		fdf->map.b_lines = !fdf->map.b_lines;
+	if (key == KEY_X)
+		fdf->map.b_pluslines = !fdf->map.b_pluslines;
+	if (key == KEY_S)
+		fdf->map.b_stars = !fdf->map.b_stars;
+	if (key == KEY_H)
+		fdf->map.b_shadow = !fdf->map.b_shadow;
+	if (key == KEY_F)
+		render_model(fdf, FIT);
+	if (key == KEY_CMD)
+		fdf->keys.b_key_ctrl = 1;
+}
+
 // ? the signature is based on the prototypes found in the MLX library
 // ? the return value is mask?
 
@@ -95,6 +113,7 @@ int	on_key_down(int key, void *param)
 	fdf = (t_globals *)param;
 	rotation_control(key, fdf);
 	map_controls_a(key, fdf);
+	map_controls_b(key, fdf);
 	render_model(fdf, FREE);
 	return (0);
 }
