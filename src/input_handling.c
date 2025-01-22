@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:56:38 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/21 15:38:43 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:48:31 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	rotation_control(int key, t_globals *fdf)
 	if (fdf->keys.b_key_ctrl)
 		ang = 90;
 	if (key == KEY_DOWN)
-		modifiy_angle(&fdf->map.ang[X_AXIS], ang);
+		modify_angle(&fdf->map.ang[X_AXIS], ang);
 	if (key == KEY_UP)
 		modify_angle(&fdf->map.ang[X_AXIS], -ang);
 	if (key == KEY_LEFT)
@@ -86,6 +86,7 @@ static void	map_controls_a(int key, t_globals *fdf)
 }
 
 // ? the signature is based on the prototypes found in the MLX library
+// ? the return value is mask?
 
 int	on_key_down(int key, void *param)
 {
@@ -94,4 +95,6 @@ int	on_key_down(int key, void *param)
 	fdf = (t_globals *)param;
 	rotation_control(key, fdf);
 	map_controls_a(key, fdf);
+	draw_model(fdf, FREE);
+	return (0);
 }

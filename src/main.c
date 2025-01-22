@@ -6,12 +6,13 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:55:14 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/21 15:25:31 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:46:16 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 #include "../inc/map.h"
+#include "../inc/input_handling.h"
 
 int		terminate(t_globals *fdf)
 {
@@ -56,6 +57,8 @@ int	main(int argv, char **argc)
 	system_init(&fdf);
 	if (draw_model(&fdf, FIT) < 0)
 		error_out("Error Drawing Model");
+	mlx_hook(fdf.win, 2, 1L << 0, on_key_down, &fdf);
+	mlx_hook(fdf.win, 17, 0, terminate, &fdf);
 	mlx_loop(fdf.mlx);
 	free(fdf.map.points);
 	free(fdf.map.memory);
