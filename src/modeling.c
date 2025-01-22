@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/21 13:52:21 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:45:10 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -377,7 +377,7 @@ static void	draw_wires(t_globals *global_state, t_point *wire)
 // ! TO_REFACTOR : rename projection arg to something like model_projection
 // ! TODO : add functionality to resize window
 
-int	draw_model(t_globals *fdf, int fit)
+int	render_model(t_globals *fdf, int fit)
 {
 	t_point *projection;
 	clock_t	t;
@@ -385,7 +385,7 @@ int	draw_model(t_globals *fdf, int fit)
 	t = clock();
 	projection = malloc(fdf->map.len * sizeof(t_point));
 	if (projection == NULL)
-		error_out("Failed Alocating memory for projected map in draw_model()");
+		error_out("Failed Alocating memory for projected map in render_model()");
 	fdf->map.renders++;
 	draw_background(fdf, fdf->map.colors.back, \
 		fdf->map.colors.menu);

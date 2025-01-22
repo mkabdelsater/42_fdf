@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:56:38 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/21 15:48:31 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:45:10 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	map_controls_a(int key, t_globals *fdf)
 		if (fdf->map.proportion > 0.5)
 			fdf->map.z_divisor = fdf->map.proportion * 30;
 		color_map_points(&fdf->map);
-		draw_model(fdf, FIT);
+		render_model(fdf, FIT);
 	}
 	if (key == KEY_C)
 	{
@@ -81,7 +81,7 @@ static void	map_controls_a(int key, t_globals *fdf)
 	if (key == KEY_P)
 	{
 		set_view_to_topdown(&fdf->map);
-		draw_model(fdf, FIT);
+		render_model(fdf, FIT);
 	}
 }
 
@@ -95,6 +95,6 @@ int	on_key_down(int key, void *param)
 	fdf = (t_globals *)param;
 	rotation_control(key, fdf);
 	map_controls_a(key, fdf);
-	draw_model(fdf, FREE);
+	render_model(fdf, FREE);
 	return (0);
 }

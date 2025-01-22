@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:55:14 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/21 15:46:16 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:45:10 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int argv, char **argc)
 		error_out("Number of arguments not 1 - Usage : `./fdf <map file>`");
 	load_map(&fdf.map, argc[1]);
 	system_init(&fdf);
-	if (draw_model(&fdf, FIT) < 0)
+	if (render_model(&fdf, FIT) < 0)
 		error_out("Error Drawing Model");
 	mlx_hook(fdf.win, 2, 1L << 0, on_key_down, &fdf);
 	mlx_hook(fdf.win, 17, 0, terminate, &fdf);
