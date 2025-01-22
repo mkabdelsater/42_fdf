@@ -6,47 +6,14 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:56:38 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 12:23:25 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:12:43 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 #include "../inc/map.h"
 #include "../inc/keycodes.h"
-
-// !TO_REFACTOR
-
-static void modify_angle(float *angle, float mod)
-{
-	*angle += mod;
-	if (*angle < 0)
-		*angle = 360 + *angle;
-	if (*angle >=360)
-		*angle = *angle - 360;
-}
-
-// !TODO : Add wasdqe control scheme
-
-static void	rotation_control(int key, t_globals *fdf)
-{
-	int	ang;
-
-	ang = 1;
-	if (fdf->keys.b_key_ctrl)
-		ang = 90;
-	if (key == KEY_DOWN)
-		modify_angle(&fdf->map.ang[X_AXIS], ang);
-	if (key == KEY_UP)
-		modify_angle(&fdf->map.ang[X_AXIS], -ang);
-	if (key == KEY_LEFT)
-		modify_angle(&fdf->map.ang[Y_AXIS], ang);
-	if (key == KEY_RIGHT)
-		modify_angle(&fdf->map.ang[Y_AXIS], -ang);
-	if (key == KEY_Q)
-		modify_angle(&fdf->map.ang[Z_AXIS], ang);
-	if (key == KEY_W)
-		modify_angle(&fdf->map.ang[Z_AXIS], -ang);
-}
+#include "../inc/input_handling.h"
 
 static void set_view_to_topdown(t_map *map)
 {
