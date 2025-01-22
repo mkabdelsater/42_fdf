@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 12:21:40 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:27:54 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,8 +211,8 @@ static void	parse_map_to_model(t_globals *fdf, t_point *projection)
 		fdf->map.len, Y_AXIS);
 	rotate_along_axis(projection, projection, fdf->map.ang[Z_AXIS], \
 		fdf->map.len, Z_AXIS);
-	// if (global_state->map.b_geo && global_state->map.b_shadow)
-	// 	shadow(projection, global_state->map.len);
+	// if (fdf->map.b_geo && fdf->map.b_shadow)
+	// 	shadow(projection, fdf->map.len);
 	orto_projection(projection, projection, fdf->map.len);
 	scale_model(projection, fdf->map.scale, fdf->map.len);
 	translate_model(projection, fdf->map.source, fdf->map.len);
@@ -316,19 +316,19 @@ static bool	point_is_in_screen(t_point *points, int len)
 
 // ! AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
-static void	zoom_model_to_fit(t_globals *global_state, t_point *projection)
+static void	zoom_model_to_fit(t_globals *fdf, t_point *projection)
 {
-	global_state->map.source.axis[X_AXIS] = ((WIN_WIDTH - MENU_WIDTH) / 2) + MENU_WIDTH;
-	global_state->map.source.axis[Y_AXIS] = WIN_HEIGHT / 2;
-	global_state->map.source.axis[Z_AXIS] = 0;
-	global_state->map.scale = 1;
-	duplicate_map(global_state->map.points, projection, global_state->map.len);
-	parse_map_to_model(global_state, projection);
-	while (point_is_in_screen(projection, global_state->map.len))
+	fdf->map.source.axis[X_AXIS] = ((WIN_WIDTH - MENU_WIDTH) / 2) + MENU_WIDTH;
+	fdf->map.source.axis[Y_AXIS] = WIN_HEIGHT / 2;
+	fdf->map.source.axis[Z_AXIS] = 0;
+	fdf->map.scale = 1;
+	duplicate_map(fdf->map.points, projection, fdf->map.len);
+	parse_map_to_model(fdf, projection);
+	while (point_is_in_screen(projection, fdf->map.len))
 	{
-		duplicate_map(global_state->map.points, projection, global_state->map.len);
-		parse_map_to_model(global_state, projection);
-		global_state->map.scale = global_state->map.scale + 0.2;
+		duplicate_map(fdf->map.points, projection, fdf->map.len);
+		parse_map_to_model(fdf, projection);
+		fdf->map.scale = fdf->map.scale + 0.2;
 	}
 }
 
