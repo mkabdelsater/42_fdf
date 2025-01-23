@@ -6,7 +6,7 @@
 #    By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/03 13:23:49 by moabdels          #+#    #+#              #
-#    Updated: 2025/01/22 16:15:04 by moabdels         ###   ########.fr        #
+#    Updated: 2025/01/23 13:54:52 by moabdels         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ WHITE = \033[0;97m
 CYAN = \033[0;96m
 
 SRC_FILES		=	main map_init map_loading map_utils geometry modeling \
-					draw_menu input_handling input_handling_utils \
+					draw_menu input_handling input_handling_utils mlx_utils\
 					utils get_next_line get_next_line_utils
 
 SRC				= $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))

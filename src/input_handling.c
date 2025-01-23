@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:56:38 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 16:12:43 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:18:16 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ static void map_controls_c(int key, t_globals *fdf)
 }
 
 // ? the signature is based on the prototypes found in the MLX library
-// ? the return value is mask?
 // ! TO_REFACTOR : there are actions that trigger re-rendering twice, bad!
 
 int	on_key_down(int key, void *param)

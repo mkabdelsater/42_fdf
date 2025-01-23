@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:55:52 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 13:53:07 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/23 14:29:48 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include <math.h>
 # include <stdbool.h>
 # include <fcntl.h>
+
+// ! There's minor spaghettification with the include files but this project
+// ! has taken way too much time already, you'll need to clean this up
 
 # define WIN_WIDTH	1920
 # define WIN_HEIGHT	1080
@@ -138,7 +141,6 @@ typedef struct s_globals
 void	error_out(char *err_msg);
 int		terminate(t_globals *fdf);
 
-bool	point_is_in_window(t_point point);
 int		my_putpixel(t_globals *meta, t_point point);
 int		draw_line(t_globals *globals, t_point start, t_point end);
 
