@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:23:21 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 16:03:26 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:11:01 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void	set_view_to_isometric(t_map *map);
 // ? Map Utils
 bool	is_valid_point(char *value);
 int		get_point_color(char *line);
+void	duplicate_map(t_point *src, t_point *dst, int len);
 
 #endif

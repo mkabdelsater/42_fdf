@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:47:45 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 16:04:54 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:10:51 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,16 @@ bool	is_valid_point(char *value)
 		i++;
 	}
 	return (true);
+}
+
+void	duplicate_map(t_point *src, t_point *dst, int len)
+{
+	int	i;
+
+	i = 0;
+	while (i < len)
+	{
+		dst[i] = src[i];
+		i++;
+	}
 }

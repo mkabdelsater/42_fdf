@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/23 15:05:20 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:10:43 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,18 +217,6 @@ static void	parse_map_to_model(t_globals *fdf, t_point *projection)
 	orto_projection(projection, projection, fdf->map.len);
 	scale_model(projection, fdf->map.scale, fdf->map.len);
 	translate_model(projection, fdf->map.source, fdf->map.len);
-}
-
-static void	duplicate_map(t_point *src, t_point *dst, int len)
-{
-	int	i;
-
-	i = 0;
-	while (i < len)
-	{
-		dst[i] = src[i];
-		i++;
-	}
 }
 
 // ! OPTIMIZATION ANGLE : non-polynomial time calculation?
