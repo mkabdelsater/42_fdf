@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:21:30 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 13:06:36 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 13:52:51 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ void	parse_map_to_model(t_globals *fdf, t_point *projection)
 		fdf->map.len, Y_AXIS);
 	rotate_along_axis(projection, projection, fdf->map.ang[Z_AXIS], \
 		fdf->map.len, Z_AXIS);
-	// if (fdf->map.b_geo && fdf->map.b_shadow)
-	// 	shadow(projection, fdf->map.len);
+	if (fdf->map.b_geo && fdf->map.b_shadow)
+		toggle_opacity(projection, fdf->map.len);
 	orto_projection(projection, projection, fdf->map.len);
 	scale_model(projection, fdf->map.scale, fdf->map.len);
 	translate_model(projection, fdf->map.source, fdf->map.len);

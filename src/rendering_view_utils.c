@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:09:20 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 13:10:55 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 13:51:45 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,19 @@ void	set_view_to_isometric(t_map *map)
 	map->b_range = 0;
 	map->source.axis[X_AXIS] = ((WIN_WIDTH - MENU_WIDTH) / 2) + MENU_WIDTH;
 	map->source.axis[Y_AXIS] = WIN_HEIGHT / 2;
+}
+
+void	toggle_opacity(t_point *points, int len)
+{
+	int		i;
+
+	i = 0;
+	while (i < len)
+	{
+		if(points[i].axis[Z_AXIS] < 0)
+			points[i].painted = 0;
+		else
+			points[i].painted = 1;
+		i++;
+	}
 }
