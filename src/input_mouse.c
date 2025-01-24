@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:12:52 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 16:01:55 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:39:33 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ int	on_mouse_move(int x, int y, void *param)
 		return (0);
 	if (fdf->keys.b_mouse_l)
 	{
-		modify_angle(&fdf->map.ang[X_AXIS], (int)fdf->keys.last_click_l.axis[Y_AXIS] - y);
-		modify_angle(&fdf->map.ang[Y_AXIS], (int)fdf->keys.last_click_l.axis[X_AXIS] - x);
+		modify_angle(&fdf->map.ang[X_AXIS], \
+			(int)fdf->keys.last_click_l.axis[Y_AXIS] - y);
+		modify_angle(&fdf->map.ang[Y_AXIS], \
+			(int)fdf->keys.last_click_l.axis[X_AXIS] - x);
 		fdf->keys.last_click_l.axis[X_AXIS] = x;
 		fdf->keys.last_click_l.axis[Y_AXIS] = y;
 		render_model(fdf, FREE);

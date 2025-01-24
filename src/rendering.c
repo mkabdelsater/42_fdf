@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 14:01:26 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:34:40 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	zoom_model_to_fit(t_globals *fdf, t_point *projection)
 	}
 }
 
-static void	draw_wire(t_point *point, t_globals *fdf, int visual_density, int line)
+static void	draw_wire(t_point *point, t_globals *fdf, int density, int line)
 {
 	int	i;
 	int	x_length;
@@ -66,17 +66,17 @@ static void	draw_wire(t_point *point, t_globals *fdf, int visual_density, int li
 	x_limit = (int)fdf->map.limits.axis[X_AXIS];
 	while (i < x_limit)
 	{
-		x_length = i + visual_density;
+		x_length = i + density;
 		if (x_length >= x_limit)
 			x_length = x_limit - 1;
-		y_length = i + x_limit * visual_density;
+		y_length = i + x_limit * density;
 		if (point[i].painted)
 		{
 			draw_line(fdf, point[i], point[x_length]);
-			if (line + visual_density < (int)fdf->map.limits.axis[Y_AXIS])
+			if (line + density < (int)fdf->map.limits.axis[Y_AXIS])
 				draw_line(fdf, point[i], point[y_length]);
 		}
-		i += visual_density;
+		i += density;
 	}
 }
 
@@ -84,16 +84,16 @@ static void	draw_wire(t_point *point, t_globals *fdf, int visual_density, int li
 static void	draw_wires(t_globals *fdf, t_point *wire)
 {
 	int	i;
-	int	visual_density;
+	int	density;
 
-	visual_density = 8 / fdf->map.scale;
-	if (visual_density == 0)
-		visual_density = 1;
+	density = 8 / fdf->map.scale;
+	if (density == 0)
+		density = 1;
 	i = 0;
 	while (i < fdf->map.len)
 	{
-		draw_wire(&wire[i], fdf, visual_density, i / fdf->map.limits.axis[X_AXIS]);
-		i += fdf->map.limits.axis[X_AXIS] * visual_density;
+		draw_wire(&wire[i], fdf, density, i / fdf->map.limits.axis[X_AXIS]);
+		i += fdf->map.limits.axis[X_AXIS] * density;
 	}
 }
 
@@ -103,7 +103,7 @@ static void	draw_wires(t_globals *fdf, t_point *wire)
 
 int	render_model(t_globals *fdf, int fit)
 {
-	t_point *projection;
+	t_point	*projection;
 	clock_t	t;
 
 	t = clock();
@@ -119,7 +119,6 @@ int	render_model(t_globals *fdf, int fit)
 		zoom_model_to_fit(fdf, projection);
 	if (fdf->map.b_lines)
 		draw_wires(fdf, projection);
-	// if (fdf->map.b_dots)
 	mlx_put_image_to_window(fdf->mlx, fdf->win, \
 		fdf->bitmap.img, 0, 0);
 	draw_menu(fdf);

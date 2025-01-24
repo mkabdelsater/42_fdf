@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:56:38 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 14:28:57 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:38:03 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "../inc/keycodes.h"
 #include "../inc/input_handling.h"
 
-static void set_view_to_topdown(t_map *map)
+static void	set_view_to_topdown(t_map *map)
 {
 	map->b_geo = 0;
 	map->ang[X_AXIS] = 90;
@@ -43,7 +43,8 @@ static void	map_controls_a(int key, t_globals *fdf)
 	}
 	if (key == KEY_C)
 	{
-		fdf->map.source.axis[X_AXIS] = ((WIN_WIDTH - MENU_WIDTH) / 2) + MENU_WIDTH;
+		fdf->map.source.axis[X_AXIS] = \
+			((WIN_WIDTH - MENU_WIDTH) / 2) + MENU_WIDTH;
 		fdf->map.source.axis[Y_AXIS] = WIN_HEIGHT / 2;
 	}
 	if (key == KEY_P)
@@ -73,7 +74,7 @@ static void	map_controls_b(int key, t_globals *fdf)
 		fdf->keys.b_key_ctrl = 1;
 }
 
-static void map_controls_c(int key, t_globals *fdf)
+static void	map_controls_c(int key, t_globals *fdf)
 {
 	if (key == KEY_B && fdf->keys.b_key_ctrl)
 		fdf->map.b_range -= 0.0001;
@@ -97,7 +98,7 @@ static void map_controls_c(int key, t_globals *fdf)
 
 int	on_key_down(int key, void *param)
 {
-	t_globals *fdf;
+	t_globals	*fdf;
 
 	fdf = (t_globals *)param;
 	rotation_control(key, fdf);

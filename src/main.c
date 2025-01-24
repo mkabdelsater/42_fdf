@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:55:14 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 16:04:22 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:19:03 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../inc/rendering.h"
 #include "../inc/input_handling.h"
 
-int		terminate(t_globals *fdf)
+int	terminate(t_globals *fdf)
 {
 	mlx_destroy_window(fdf->mlx, fdf->win);
 	free(fdf->map.points);
@@ -34,7 +34,7 @@ void	system_init(t_globals *fdf)
 	fdf->keys.b_mouse_r = false;
 	fdf->mlx = mlx_init();
 	fdf->win = mlx_new_window(fdf->mlx, WIN_WIDTH, \
-		WIN_HEIGHT,"FDF - moabdels");
+		WIN_HEIGHT, "FDF - moabdels");
 	fdf->bitmap.img = mlx_new_image(fdf->mlx, WIN_WIDTH, \
 		WIN_HEIGHT);
 	fdf->bitmap.buffer = mlx_get_data_addr(fdf->bitmap.img, \

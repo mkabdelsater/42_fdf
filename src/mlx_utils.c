@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:51:32 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/23 13:53:56 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:27:52 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static bool	point_is_in_window(t_point point)
 {
 	if (point.axis[X_AXIS] < 0 || point.axis[X_AXIS] > WIN_WIDTH)
 		return (false);
-	if(point.axis[Y_AXIS] < 0 || point.axis[Y_AXIS] > WIN_HEIGHT)
+	if (point.axis[Y_AXIS] < 0 || point.axis[Y_AXIS] > WIN_HEIGHT)
 		return (false);
 	return (true);
 }
@@ -78,7 +78,8 @@ int	my_putpixel(t_globals *fdf, t_point point)
 	if (point.axis[X_AXIS] >= WIN_WIDTH || point.axis[Y_AXIS] >= WIN_HEIGHT || \
 		point.axis[X_AXIS] < 0 || point.axis[Y_AXIS] < 0)
 		return (-1);
-	pixel = ((int)point.axis[Y_AXIS] * WIN_WIDTH * 4) + ((int)point.axis[X_AXIS] * 4);
+	pixel = ((int)point.axis[Y_AXIS] * WIN_WIDTH * 4) + \
+		((int)point.axis[X_AXIS] * 4);
 	if (fdf->bitmap.bit_x_pixel != 32)
 		point.color = mlx_get_color_value(fdf->mlx, point.color);
 	set_color(&fdf->bitmap.buffer[pixel], \

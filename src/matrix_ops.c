@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:23:26 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/23 15:30:27 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:36:09 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,13 +101,14 @@ void	rotate_along_axis(t_point *points, t_point *projection, \
 	}
 }
 
+// !TO_RESEARCH : projection matrix value
+
 void	orto_projection(t_point *points, t_point *projection, int len)
 {
 	int		i;
 	float	projection_matrix[3][3];
 
 	b_zero_matrix(projection_matrix);
-	// !TO_RESEARCH
 	projection_matrix[0][0] = 1;
 	projection_matrix[1][1] = 1;
 	i = 0;

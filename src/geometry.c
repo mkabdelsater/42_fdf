@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 13:27:08 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/09 15:03:11 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:25:10 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,4 @@ void	set_polar_coords(t_map *map)
 			(map->limits.axis[Y_AXIS] / 2) - 1) * steps_y + 0.5 * steps_y;
 		i++;
 	}
-
 }

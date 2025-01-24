@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:59:38 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/23 15:05:31 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:32:56 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,21 @@ static int	convert_color_to_32bit(t_globals *global_state, int color)
  *
  */
 
-static void	set_bitmap_color(char *bitmap_buffer, int color, int alpha, int endian)
+static void	set_bitmap_color(char *bitmap_buf, int color, int alpha, int endian)
 {
 	if (endian == 1)
 	{
-		bitmap_buffer[0] = alpha;
-		bitmap_buffer[1] = (color >> 16) & 0xFF;
-		bitmap_buffer[2] = (color >> 8) & 0xFF;
-		bitmap_buffer[3] = (color) & 0xFF;
+		bitmap_buf[0] = alpha;
+		bitmap_buf[1] = (color >> 16) & 0xFF;
+		bitmap_buf[2] = (color >> 8) & 0xFF;
+		bitmap_buf[3] = (color) & 0xFF;
 	}
 	else
 	{
-		bitmap_buffer[0] = (color) & 0xFF;
-		bitmap_buffer[1] = (color >> 8) & 0xFF;
-		bitmap_buffer[2] = (color >> 16) & 0xFF;
-		bitmap_buffer[3] = alpha;
+		bitmap_buf[0] = (color) & 0xFF;
+		bitmap_buf[1] = (color >> 8) & 0xFF;
+		bitmap_buf[2] = (color >> 16) & 0xFF;
+		bitmap_buf[3] = alpha;
 	}
 }
 
@@ -51,7 +51,7 @@ static void	set_bitmap_color(char *bitmap_buffer, int color, int alpha, int endi
 void	draw_background(t_globals *fdf, int bg_color, int menu_color)
 {
 	int	axis[2];
-	int	pixel_index;
+	int	i;
 	int	color;
 
 	axis[Y_AXIS] = 0;
@@ -66,8 +66,8 @@ void	draw_background(t_globals *fdf, int bg_color, int menu_color)
 				color = menu_color;
 			else
 				color = bg_color;
-			pixel_index = (axis[Y_AXIS] * fdf->bitmap.lines) + (axis[X_AXIS] * 4);
-			set_bitmap_color(&fdf->bitmap.buffer[pixel_index], \
+			i = (axis[Y_AXIS] * fdf->bitmap.lines) + (axis[X_AXIS] * 4);
+			set_bitmap_color(&fdf->bitmap.buffer[i], \
 				color, 1, fdf->bitmap.endian);
 			axis[X_AXIS]++;
 		}

@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:09:20 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 13:51:45 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:36:33 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	toggle_opacity(t_point *points, int len)
 	i = 0;
 	while (i < len)
 	{
-		if(points[i].axis[Z_AXIS] < 0)
+		if (points[i].axis[Z_AXIS] < 0)
 			points[i].painted = 0;
 		else
 			points[i].painted = 1;

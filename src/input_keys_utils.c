@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:10:12 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 14:16:02 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:38:50 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	modify_angle(float *angle, float mod)
 	*angle += mod;
 	if (*angle < 0)
 		*angle = 360 + *angle;
-	if (*angle >=360)
+	if (*angle >= 360)
 		*angle = *angle - 360;
 }
 
@@ -48,8 +48,6 @@ void	rotation_control(int key, t_globals *fdf)
 		modify_angle(&fdf->map.ang[Z_AXIS], -ang);
 }
 
-
-//! Try not passing void param?
 int	on_key_release(int key, void *param)
 {
 	t_globals	*fdf;

@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 15:11:01 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 15:59:03 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:42:13 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	load_map(t_map *map, char *path)
 	set_polar_coords(map);
 	ft_printf("\nLoading GUI...\n");
 }
-
 
 // ? when bytes_read is less than the MAX_READ_SIZE, that means we've reached
 // ? the end of the file
@@ -74,11 +73,11 @@ static char	*parse_map(int fd)
 //go through the lines map->memory line by line and load the points
 // free each line after loading it into `line`
 
-static int	load_points(char *line, t_map *map, int line_count)
+static int	load_points(char *line, t_map *map, int lines)
 {
 	int			i;
 	char		**lines_vector;
-	static int	point_index = 0;
+	static int	p_index = 0;
 
 	i = 0;
 	lines_vector = ft_split(line, ' ');
@@ -86,18 +85,18 @@ static int	load_points(char *line, t_map *map, int line_count)
 	{
 		if (!is_valid_point(&lines_vector[i][0]))
 			error_out("The File is empty or wrongly formatted");
-		map->points[point_index].axis[Z_AXIS] = ft_atoi(&lines_vector[i][0]);
-		map->points[point_index].axis[X_AXIS] = i - map->limits.axis[X_AXIS] / 2;
-		map->points[point_index].axis[Y_AXIS] = line_count - map->limits.axis[Y_AXIS] / 2;
-		map->points[point_index].painted = true;
-		map->points[point_index].color = DEFAULT_COLOR;
-		map->points[point_index].color_hex = get_point_color(lines_vector[i]);
-		if (map->limits.axis[Z_AXIS] < map->points[point_index].axis[Z_AXIS])
-			map->limits.axis[Z_AXIS] = map->points[point_index].axis[Z_AXIS];
-		if (map->z_min > map->points[point_index].axis[Z_AXIS])
-			map->z_min = map->points[point_index].axis[Z_AXIS];
+		map->points[p_index].axis[Z_AXIS] = ft_atoi(&lines_vector[i][0]);
+		map->points[p_index].axis[X_AXIS] = i - map->limits.axis[X_AXIS] / 2;
+		map->points[p_index].axis[Y_AXIS] = lines - map->limits.axis[Y_AXIS] / 2;
+		map->points[p_index].painted = true;
+		map->points[p_index].color = DEFAULT_COLOR;
+		map->points[p_index].color_hex = get_point_color(lines_vector[i]);
+		if (map->limits.axis[Z_AXIS] < map->points[p_index].axis[Z_AXIS])
+			map->limits.axis[Z_AXIS] = map->points[p_index].axis[Z_AXIS];
+		if (map->z_min > map->points[p_index].axis[Z_AXIS])
+			map->z_min = map->points[p_index].axis[Z_AXIS];
 		i++;
-		point_index++;
+		p_index++;
 	}
 	free_2d_vector(lines_vector);
 	return (i);
@@ -137,7 +136,7 @@ static void	map_get_points(t_map *map)
 static void	set_map_limits(t_map *map)
 {
 	static int	i = -1;
-	static int	elem_count = 0;
+	static int	elems = 0;
 
 	while (map->memory[++i])
 	{
@@ -146,19 +145,20 @@ static void	set_map_limits(t_map *map)
 		if (ft_isalnum(map->memory[i]) && \
 			(map->memory[i + 1] == ' ' || map->memory[i + 1] == '\n' || \
 			map->memory[i + 1] == '\0'))
-				elem_count++;
+			elems++;
 		if (map->memory[i] == '\n')
 		{
 			map->limits.axis[Y_AXIS]++;
-			if (map->limits.axis[X_AXIS] != 0 && (map->limits.axis[X_AXIS] != elem_count))
-				error_out("Bad Map Format - Number of Elements per line is inconsistent");
+			if (map->limits.axis[X_AXIS] != 0 && \
+				(map->limits.axis[X_AXIS] != elems))
+				error_out("Bad Map Format - Line Length is inconsistent");
 			else
-				map->limits.axis[X_AXIS] = elem_count;
-			elem_count = 0;
+				map->limits.axis[X_AXIS] = elems;
+			elems = 0;
 		}
 	}
-	if (elem_count > 0 && (map->limits.axis[X_AXIS] != elem_count))
-		error_out("Bad Map Format - Number of Elements per line is inconsistent");
+	if (elems > 0 && (map->limits.axis[X_AXIS] != elems))
+		error_out("Bad Map Format - Line Length Inconsistent");
 	map->limits.axis[Y_AXIS]++;
 	map->len = map->limits.axis[X_AXIS] * map->limits.axis[Y_AXIS];
 }
