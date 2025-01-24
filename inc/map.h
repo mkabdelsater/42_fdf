@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 14:23:21 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/23 15:11:01 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 14:27:09 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "../inc/fdf.h"
 
-int		render_model(t_globals *global_state, int fit);
 void	draw_menu(t_globals *fdf);
 void	load_map(t_map *map, char *path);
 // void	draw_background(t_globals *global_state, int bg_color, int menu_color);

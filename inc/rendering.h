@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:01:27 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 13:52:32 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 14:27:21 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ void	toggle_opacity(t_point *points, int len);
 void	draw_background(t_globals *fdf, int bg_color, int menu_color);
 
 void	parse_map_to_model(t_globals *fdf, t_point *projection);
+int		render_model(t_globals *global_state, int fit);
 
 #endif
