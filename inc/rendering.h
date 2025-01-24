@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:01:27 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/23 15:26:42 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 12:47:11 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@ void	rotate_along_axis(t_point *points, t_point *projection, \
 void	orto_projection(t_point *points, t_point *projection, int len);
 
 void	draw_background(t_globals *fdf, int bg_color, int menu_color);
+
+void	parse_map_to_model(t_globals *fdf, t_point *projection);
 
 #endif
