@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:10:12 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 13:56:43 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 14:05:29 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	rotation_control(int key, t_globals *fdf)
 
 
 //! Try not passing void param?
-int	key_release(int key, void *param)
+int	on_key_release(int key, void *param)
 {
 	t_globals	*fdf;
 

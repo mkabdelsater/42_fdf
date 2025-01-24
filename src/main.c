@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:55:14 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 15:53:56 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 14:06:52 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	main(int argv, char **argc)
 	if (render_model(&fdf, FIT) < 0)
 		error_out("Error Rendering Model");
 	mlx_hook(fdf.win, 2, 1L << 0, on_key_down, &fdf);
+	mlx_hook(fdf.win, 3, 1L << 1, on_key_release, &fdf);
 	mlx_hook(fdf.win, 17, 0, terminate, &fdf);
 	mlx_loop(fdf.mlx);
 	free(fdf.map.points);
