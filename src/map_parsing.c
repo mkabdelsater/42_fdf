@@ -6,24 +6,15 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:21:30 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 12:59:58 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 13:06:36 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 #include "../inc/rendering.h"
 
-static void	z_division(t_point *projection, float divisor, int len)
-{
-	int i;
-
-	i = 0;
-	while (i < len)
-	{
-		projection[i].axis[Z_AXIS] /= divisor;
-		i++;
-	}
-}
+// ! Optimization Angle : each of these functions can/should be applied separately
+// ! to avoid redrawing the map everytime?
 
 static void	bend_model_view(t_point *points, int len, float range)
 {
@@ -89,7 +80,15 @@ static void	translate_model(t_point *points, t_point dest, int len)
 
 void	parse_map_to_model(t_globals *fdf, t_point *projection)
 {
-	z_division(projection, fdf->map.z_divisor, fdf->map.len);
+	int i;
+
+	i = 0;
+	while (i < fdf->map.len)
+	{
+		projection[i].axis[Z_AXIS] /= fdf->map.z_divisor;
+		i++;
+	}
+
 	bend_model_view(projection, fdf->map.len, fdf->map.b_range);
 	if (fdf->map.b_geo)
 		toggle_geography_view(&fdf->map, projection);

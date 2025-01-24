@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 12:59:44 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 13:06:41 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@
 #include "../inc/utils.h"
 #include "../inc/rendering.h"
 #include <time.h>
-
-// ! Optimization Angle : each of these functions can/should be applied separately
-// ! to avoid redrawing the map everytime?
-
-
-
 
 // ! OPTIMIZATION ANGLE : non-polynomial time calculation?
 
