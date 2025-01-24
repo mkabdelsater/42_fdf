@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 13:11:37 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 14:01:26 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ static void	draw_wires(t_globals *fdf, t_point *wire)
 }
 
 // ! TO_REFACTOR : rename projection arg to something like model_projection?
-// ! TODO : add functionality to resize window
+// ! TODO : add functionality to resize window?
+// ! TODO : make isometric the default view
 
 int	render_model(t_globals *fdf, int fit)
 {

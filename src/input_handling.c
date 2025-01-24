@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:56:38 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/22 16:18:16 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 13:59:06 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ static void	map_controls_b(int key, t_globals *fdf)
 		fdf->map.b_lines = !fdf->map.b_lines;
 	if (key == KEY_X)
 		fdf->map.b_pluslines = !fdf->map.b_pluslines;
+	if (key == KEY_G)
+		fdf->map.b_geo = !fdf->map.b_geo;
 	if (key == KEY_S)
 		fdf->map.b_stars = !fdf->map.b_stars;
 	if (key == KEY_H)
