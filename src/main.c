@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:55:14 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 14:27:01 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:04:22 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	error_out(char *err_msg)
 }
 
 // !TODO Add a stats menu, a controls menu and an option to flip between them
+// ? Note : mlx_hook requires very specific function signatures or it will
+// ? segfault (probably because it tries to access a param that doesn't exit?)
 
 int	main(int argv, char **argc)
 {
@@ -62,6 +64,9 @@ int	main(int argv, char **argc)
 		error_out("Error Rendering Model");
 	mlx_hook(fdf.win, 2, 1L << 0, on_key_down, &fdf);
 	mlx_hook(fdf.win, 3, 1L << 1, on_key_release, &fdf);
+	mlx_hook(fdf.win, 4, 1L << 2, on_mouse_btn_press, &fdf);
+	mlx_hook(fdf.win, 5, 1L << 3, on_mouse_btn_release, &fdf);
+	mlx_hook(fdf.win, 6, 1L << 6, on_mouse_move, &fdf);
 	mlx_hook(fdf.win, 17, 0, terminate, &fdf);
 	mlx_loop(fdf.mlx);
 	free(fdf.map.points);

@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:12:52 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 15:37:55 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:01:55 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ int	on_mouse_move(int x, int y, void *param)
 	return (0);
 }
 
-int	on_mouse_btn_release(int button, t_globals *fdf)
+int	on_mouse_btn_release(int button, int x, int y, t_globals *param)
 {
-	// t_globals	*fdf;
+	t_globals	*fdf;
 
-	// (void)x;
-	// (void)y;
-	// fdf = (t_globals *)param;
+	(void)x;
+	(void)y;
+	fdf = (t_globals *)param;
 	if (button == 1)
 		fdf->keys.b_mouse_l = 0;
 	if (button == 2 || button == 3)
@@ -55,7 +55,30 @@ int	on_mouse_btn_release(int button, t_globals *fdf)
 	return (0);
 }
 
-// int	on_mouse_btn_press(int button, t_globals *fdf)
-// {
-// 	t_globals
-// }
+int	on_mouse_btn_press(int button, int x, int y, void *param)
+{
+	t_globals	*fdf;
+
+	fdf = (t_globals *)param;
+	if (button == 1)
+	{
+		fdf->keys.b_mouse_l = true;
+		fdf->keys.last_click_l.axis[X_AXIS] = x;
+		fdf->keys.last_click_l.axis[Y_AXIS] = y;
+	}
+	if (button == 2 || button == 3)
+	{
+		fdf->keys.b_mouse_r = true;
+		fdf->keys.last_click_l.axis[X_AXIS] = x;
+		fdf->keys.last_click_l.axis[Y_AXIS] = y;
+	}
+	if (button == 5)
+	{
+		if (fdf->map.scale > 2)
+			fdf->map.scale = fdf->map.scale / 1.5;
+	}
+	if (button == 4)
+		fdf->map.scale = fdf->map.scale * 1.5;
+	render_model(fdf, FREE);
+	return (0);
+}
