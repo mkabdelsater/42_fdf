@@ -6,12 +6,13 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:55:14 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 14:08:43 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/24 14:27:01 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 #include "../inc/map.h"
+#include "../inc/rendering.h"
 #include "../inc/input_handling.h"
 
 int		terminate(t_globals *fdf)
