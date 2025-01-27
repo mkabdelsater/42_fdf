@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:09:20 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 16:36:33 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:20:18 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	set_view_to_isometric(t_map *map)
 {
-	map->b_geo = 0;
+	map->sphere = 0;
 	map->ang[X_AXIS] = 30;
 	map->ang[Y_AXIS] = 330;
 	map->ang[Z_AXIS] = 30;

@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 16:10:12 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/27 14:49:05 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:14:52 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	rotation_control(int key, t_globals *fdf)
 	int	ang;
 
 	ang = 1;
-	if (fdf->keys.b_key_ctrl)
+	if (fdf->keys.ctrl)
 		ang = 90;
 	if (key == KEY_DOWN)
 		modify_angle(&fdf->map.ang[X_AXIS], ang);
@@ -53,6 +53,6 @@ int	on_key_release(int key, void *param)
 
 	fdf = (t_globals *)param;
 	if (key == KEY_CMD)
-		fdf->keys.b_key_ctrl = 0;
+		fdf->keys.ctrl = 0;
 	return (0);
 }

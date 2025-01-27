@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:21:30 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/27 14:26:44 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:20:18 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	parse_map_to_model(t_globals *fdf, t_point *projection)
 		i++;
 	}
 	bend_model_view(projection, fdf->map.len, fdf->map.b_range);
-	if (fdf->map.b_geo)
+	if (fdf->map.sphere)
 		toggle_geography_view(&fdf->map, projection);
 	project_x(projection, projection, fdf->map.ang[X_AXIS], \
 		fdf->map.len);
@@ -99,7 +99,7 @@ void	parse_map_to_model(t_globals *fdf, t_point *projection)
 		fdf->map.len);
 	project_z(projection, projection, fdf->map.ang[Z_AXIS], \
 		fdf->map.len);
-	if (fdf->map.b_geo && fdf->map.b_shadow)
+	if (fdf->map.sphere && fdf->map.b_shadow)
 		toggle_opacity(projection, fdf->map.len);
 	orto_projection(projection, projection, fdf->map.len);
 	scale_model(projection, fdf->map.scale, fdf->map.len);

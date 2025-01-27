@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:59:38 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 16:32:56 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:10:53 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	convert_color_to_32bit(t_globals *global_state, int color)
 {
-	if (global_state->bitmap.bit_x_pixel != 32)
+	if (global_state->bitmap.bits_per_pixel != 32)
 		color = mlx_get_color_value(global_state->mlx, color);
 	return (color);
 }

@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:55:14 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 16:19:03 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:14:52 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,16 @@ void	system_init(t_globals *fdf)
 		fdf->map.limits.axis[X_AXIS];
 	if (fdf->map.proportion > 0.5)
 		fdf->map.z_divisor = fdf->map.proportion * 30;
-	fdf->keys.b_key_ctrl = false;
-	fdf->keys.b_mouse_l = false;
-	fdf->keys.b_mouse_r = false;
+	fdf->keys.ctrl = false;
+	fdf->keys.lmb = false;
+	fdf->keys.rmb = false;
 	fdf->mlx = mlx_init();
 	fdf->win = mlx_new_window(fdf->mlx, WIN_WIDTH, \
 		WIN_HEIGHT, "FDF - moabdels");
 	fdf->bitmap.img = mlx_new_image(fdf->mlx, WIN_WIDTH, \
 		WIN_HEIGHT);
 	fdf->bitmap.buffer = mlx_get_data_addr(fdf->bitmap.img, \
-		&fdf->bitmap.bit_x_pixel, &fdf->bitmap.lines, &fdf->bitmap.endian);
+		&fdf->bitmap.bits_per_pixel, &fdf->bitmap.lines, &fdf->bitmap.endian);
 }
 
 void	error_out(char *err_msg)

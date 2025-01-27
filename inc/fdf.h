@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:55:52 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/23 14:29:48 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:28:48 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@
 # define SH_CYAN	"\033[0;96m"
 # define SH_WHITE	"\033[0;97m"
 
+// the individual points of the fdf map
+
 typedef struct s_point {
 	bool	painted;
 	int		color_hex;
@@ -84,23 +86,31 @@ typedef struct s_colors
 	int	menu;
 }	t_colors;
 
+// the actual picture we're looking at
+
 typedef struct s_bitmap
 {
 	void	*img;
 	char	*buffer;
-	int		bit_x_pixel;
+	int		bits_per_pixel;
 	int		lines;
 	int		endian;
 }	t_bitmap;
 
+// ? last_click_l/r -> last position on the screen clicked on
+
 typedef struct s_keys
 {
-	bool	b_mouse_l;
-	bool	b_mouse_r;
-	bool	b_key_ctrl;
+	bool	lmb;
+	bool	rmb;
+	bool	ctrl;
 	t_point	last_click_l;
 	t_point	last_click_r;
 }	t_keys;
+
+/**
+ * ? points ->
+ */
 
 typedef struct s_map
 {
@@ -122,8 +132,7 @@ typedef struct s_map
 	char		**lines;
 	bool		b_lines;
 	bool		b_dots;
-	bool		b_pluslines;
-	bool		b_geo;
+	bool		sphere;
 	bool		b_stars;
 	bool		b_shadow;
 }	t_map;

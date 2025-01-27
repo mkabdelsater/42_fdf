@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:51:32 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 16:27:52 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:10:53 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	my_putpixel(t_globals *fdf, t_point point)
 		return (-1);
 	pixel = ((int)point.axis[Y_AXIS] * WIN_WIDTH * 4) + \
 		((int)point.axis[X_AXIS] * 4);
-	if (fdf->bitmap.bit_x_pixel != 32)
+	if (fdf->bitmap.bits_per_pixel != 32)
 		point.color = mlx_get_color_value(fdf->mlx, point.color);
 	set_color(&fdf->bitmap.buffer[pixel], \
 		fdf->bitmap.endian, point.color, alpha);

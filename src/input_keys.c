@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:56:38 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 16:38:03 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:28:48 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 static void	set_view_to_topdown(t_map *map)
 {
-	map->b_geo = 0;
+	map->sphere = 0;
 	map->ang[X_AXIS] = 90;
 	map->ang[Y_AXIS] = 0;
 	map->ang[Z_AXIS] = 0;
@@ -60,10 +60,8 @@ static void	map_controls_b(int key, t_globals *fdf)
 		fdf->map.b_dots = !fdf->map.b_dots;
 	if (key == KEY_L)
 		fdf->map.b_lines = !fdf->map.b_lines;
-	if (key == KEY_X)
-		fdf->map.b_pluslines = !fdf->map.b_pluslines;
 	if (key == KEY_G)
-		fdf->map.b_geo = !fdf->map.b_geo;
+		fdf->map.sphere = !fdf->map.sphere;
 	if (key == KEY_S)
 		fdf->map.b_stars = !fdf->map.b_stars;
 	if (key == KEY_H)
@@ -71,18 +69,18 @@ static void	map_controls_b(int key, t_globals *fdf)
 	if (key == KEY_F)
 		render_model(fdf, FIT);
 	if (key == KEY_CMD)
-		fdf->keys.b_key_ctrl = 1;
+		fdf->keys.ctrl = 1;
 }
 
 static void	map_controls_c(int key, t_globals *fdf)
 {
-	if (key == KEY_B && fdf->keys.b_key_ctrl)
+	if (key == KEY_B && fdf->keys.ctrl)
 		fdf->map.b_range -= 0.0001;
-	if (key == KEY_B && !fdf->keys.b_key_ctrl)
+	if (key == KEY_B && !fdf->keys.ctrl)
 		fdf->map.b_range += 0.0001;
-	if ((key == KEY_SUM || key == KEY_SUM2) && fdf->keys.b_key_ctrl)
+	if ((key == KEY_SUM || key == KEY_SUM2) && fdf->keys.ctrl)
 		fdf->map.scale *= 1.5;
-	if ((key == KEY_RES || key == KEY_RES2) && fdf->keys.b_key_ctrl)
+	if ((key == KEY_RES || key == KEY_RES2) && fdf->keys.ctrl)
 		fdf->map.scale /= 1.5;
 	if ((key == KEY_SUM || key == KEY_SUM2) && fdf->map.z_divisor > 1)
 		fdf->map.z_divisor -= 10;
