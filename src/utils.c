@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:29:08 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 16:20:48 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/27 12:59:32 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	ft_round_double(double num)
 	return (rounded);
 }
 
-// !REFACTOR
+// !TO_REFACTOR
 int	gradient(int start_color, int end_color, int len, int pixels)
 {
 	double	step[3];

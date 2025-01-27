@@ -6,7 +6,7 @@
 #    By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/03 13:23:49 by moabdels          #+#    #+#              #
-#    Updated: 2025/01/24 14:10:55 by moabdels         ###   ########.fr        #
+#    Updated: 2025/01/27 13:00:20 by moabdels         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ CYAN = \033[0;96m
 SRC_FILES		=	main map_init map_loading map_utils geometry rendering \
 					draw_menu input_keys input_keys_utils mlx_utils \
 					input_mouse	draw_bg model_views map_parsing matrix_ops \
-					rendering_view_utils utils get_next_line get_next_line_utils
+					rendering_view_utils map_limits_utils utils \
+					get_next_line get_next_line_utils
 
 SRC				= $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ				= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))

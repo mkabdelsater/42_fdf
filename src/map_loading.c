@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 15:11:01 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 16:42:13 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/27 13:06:45 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static int	load_points(char *line, t_map *map, int lines)
 {
 	int			i;
 	char		**lines_vector;
-	static int	p_index = 0;
+	static int	pnts = 0;
 
 	i = 0;
 	lines_vector = ft_split(line, ' ');
@@ -85,18 +85,18 @@ static int	load_points(char *line, t_map *map, int lines)
 	{
 		if (!is_valid_point(&lines_vector[i][0]))
 			error_out("The File is empty or wrongly formatted");
-		map->points[p_index].axis[Z_AXIS] = ft_atoi(&lines_vector[i][0]);
-		map->points[p_index].axis[X_AXIS] = i - map->limits.axis[X_AXIS] / 2;
-		map->points[p_index].axis[Y_AXIS] = lines - map->limits.axis[Y_AXIS] / 2;
-		map->points[p_index].painted = true;
-		map->points[p_index].color = DEFAULT_COLOR;
-		map->points[p_index].color_hex = get_point_color(lines_vector[i]);
-		if (map->limits.axis[Z_AXIS] < map->points[p_index].axis[Z_AXIS])
-			map->limits.axis[Z_AXIS] = map->points[p_index].axis[Z_AXIS];
-		if (map->z_min > map->points[p_index].axis[Z_AXIS])
-			map->z_min = map->points[p_index].axis[Z_AXIS];
+		map->points[pnts].axis[Z_AXIS] = ft_atoi(&lines_vector[i][0]);
+		map->points[pnts].axis[X_AXIS] = i - map->limits.axis[X_AXIS] / 2;
+		map->points[pnts].axis[Y_AXIS] = lines - map->limits.axis[Y_AXIS] / 2;
+		map->points[pnts].painted = true;
+		map->points[pnts].color = DEFAULT_COLOR;
+		map->points[pnts].color_hex = get_point_color(lines_vector[i]);
+		if (map->limits.axis[Z_AXIS] < map->points[pnts].axis[Z_AXIS])
+			map->limits.axis[Z_AXIS] = map->points[pnts].axis[Z_AXIS];
+		if (map->z_min > map->points[pnts].axis[Z_AXIS])
+			map->z_min = map->points[pnts].axis[Z_AXIS];
 		i++;
-		p_index++;
+		pnts++;
 	}
 	free_2d_vector(lines_vector);
 	return (i);
@@ -149,9 +149,8 @@ static void	set_map_limits(t_map *map)
 		if (map->memory[i] == '\n')
 		{
 			map->limits.axis[Y_AXIS]++;
-			if (map->limits.axis[X_AXIS] != 0 && \
-				(map->limits.axis[X_AXIS] != elems))
-				error_out("Bad Map Format - Line Length is inconsistent");
+			if (get_lm(map, X_AXIS) != 0 && (get_lm(map, X_AXIS) != elems))
+				error_out("Bad Map Format - Line Length inconsistent");
 			else
 				map->limits.axis[X_AXIS] = elems;
 			elems = 0;

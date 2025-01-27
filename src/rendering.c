@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 16:34:40 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/27 13:09:15 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int	render_model(t_globals *fdf, int fit)
 	t = clock();
 	projection = malloc(fdf->map.len * sizeof(t_point));
 	if (projection == NULL)
-		error_out("Failed Alocating memory for projected map in render_model()");
+		error_out("Failed Alocating memory for map in render_model()");
 	fdf->map.renders++;
 	draw_background(fdf, fdf->map.colors.back, \
 		fdf->map.colors.menu);

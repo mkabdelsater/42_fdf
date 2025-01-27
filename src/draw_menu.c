@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:02:22 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 16:26:45 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/27 13:08:32 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	draw_controls(t_globals *global_state)
 	line += LINE_SIZE;
 	render_string(global_state, MENU_TAB_SIZE, line, "LMB: Rotate X/Y axis");
 	line += LINE_SIZE;
-	render_string(global_state, MENU_TAB_SIZE, line, "Arrows: Rotate along X/Y");
+	render_string(global_state, MENU_TAB_SIZE, line, "Arrows: Rotate X/Y");
 	line += LINE_SIZE;
 	render_string(global_state, MENU_TAB_SIZE, line, "RMB: Translate Model");
 	line += LINE_SIZE;

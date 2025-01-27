@@ -6,13 +6,25 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:12:52 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 16:39:33 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/27 13:25:39 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 #include "../inc/rendering.h"
 #include "../inc/input_handling.h"
+
+#define LMB 0
+#define RMB 1
+
+// ? returns the position of the last click
+static int	click_pos(t_globals *fdf, int mouse_btn, int axis)
+{
+	if (mouse_btn == LMB)
+		return ((int)fdf->keys.last_click_l.axis[axis]);
+	else
+		return ((int)fdf->keys.last_click_r.axis[axis]);
+}
 
 int	on_mouse_move(int x, int y, void *param)
 {
@@ -23,18 +35,16 @@ int	on_mouse_move(int x, int y, void *param)
 		return (0);
 	if (fdf->keys.b_mouse_l)
 	{
-		modify_angle(&fdf->map.ang[X_AXIS], \
-			(int)fdf->keys.last_click_l.axis[Y_AXIS] - y);
-		modify_angle(&fdf->map.ang[Y_AXIS], \
-			(int)fdf->keys.last_click_l.axis[X_AXIS] - x);
+		modify_angle(&fdf->map.ang[X_AXIS], click_pos(fdf, LMB, X_AXIS) - y);
+		modify_angle(&fdf->map.ang[Y_AXIS], click_pos(fdf, LMB, X_AXIS) - x);
 		fdf->keys.last_click_l.axis[X_AXIS] = x;
 		fdf->keys.last_click_l.axis[Y_AXIS] = y;
 		render_model(fdf, FREE);
 	}
 	if (fdf->keys.b_mouse_r)
 	{
-		fdf->map.source.axis[X_AXIS] -= ((int)fdf->keys.last_click_r.axis[X_AXIS] - x);
-		fdf->map.source.axis[Y_AXIS] -= ((int)fdf->keys.last_click_r.axis[Y_AXIS] - y);
+		fdf->map.source.axis[X_AXIS] -= (click_pos(fdf, RMB, X_AXIS) - x);
+		fdf->map.source.axis[Y_AXIS] -= (click_pos(fdf, RMB, Y_AXIS) - y);
 		fdf->map.source.axis[Z_AXIS] = 0;
 		fdf->keys.last_click_r.axis[X_AXIS] = x;
 		fdf->keys.last_click_r.axis[Y_AXIS] = y;
