@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:12:52 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/27 13:25:39 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/27 15:04:33 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	on_mouse_move(int x, int y, void *param)
 		return (0);
 	if (fdf->keys.b_mouse_l)
 	{
-		modify_angle(&fdf->map.ang[X_AXIS], click_pos(fdf, LMB, X_AXIS) - y);
+		modify_angle(&fdf->map.ang[X_AXIS], click_pos(fdf, LMB, Y_AXIS) - y);
 		modify_angle(&fdf->map.ang[Y_AXIS], click_pos(fdf, LMB, X_AXIS) - x);
 		fdf->keys.last_click_l.axis[X_AXIS] = x;
 		fdf->keys.last_click_l.axis[Y_AXIS] = y;
@@ -53,7 +53,7 @@ int	on_mouse_move(int x, int y, void *param)
 	return (0);
 }
 
-int	on_mouse_btn_release(int button, int x, int y, t_globals *param)
+int	on_mouse_btn_release(int button, int x, int y, void *param)
 {
 	t_globals	*fdf;
 
@@ -81,16 +81,14 @@ int	on_mouse_btn_press(int button, int x, int y, void *param)
 	if (button == 2 || button == 3)
 	{
 		fdf->keys.b_mouse_r = true;
-		fdf->keys.last_click_l.axis[X_AXIS] = x;
-		fdf->keys.last_click_l.axis[Y_AXIS] = y;
-	}
-	if (button == 5)
-	{
-		if (fdf->map.scale > 2)
-			fdf->map.scale = fdf->map.scale / 1.5;
+		fdf->keys.last_click_r.axis[X_AXIS] = x;
+		fdf->keys.last_click_r.axis[Y_AXIS] = y;
 	}
 	if (button == 4)
-		fdf->map.scale = fdf->map.scale * 1.5;
+		fdf->map.scale *= 1.5;
+	if (button == 5 && fdf->map.scale > 2)
+		fdf->map.scale /= 1.5;
+
 	render_model(fdf, FREE);
 	return (0);
 }
