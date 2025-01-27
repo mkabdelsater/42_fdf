@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:38:37 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/27 13:09:15 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:00:41 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	draw_wire(t_point *point, t_globals *fdf, int density, int line)
 	}
 }
 
-// ! TO_REFACTOR : magic number
+// !TO_REFACTOR : magic number
 static void	draw_wires(t_globals *fdf, t_point *wire)
 {
 	int	i;
@@ -97,9 +97,9 @@ static void	draw_wires(t_globals *fdf, t_point *wire)
 	}
 }
 
-// ! TO_REFACTOR : rename projection arg to something like model_projection?
-// ! TODO : add functionality to resize window?
-// ! TODO : make isometric the default view
+// !TO_REFACTOR : rename projection arg to something like model_projection?
+// !TODO : add functionality to resize window?
+// !TODO : make isometric the default view
 
 int	render_model(t_globals *fdf, int fit)
 {

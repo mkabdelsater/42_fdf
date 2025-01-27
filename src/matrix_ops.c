@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:23:26 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 16:36:09 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:33:14 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	b_zero_matrix(float (*matrix)[3])
 	}
 }
 
-static void	set_projection_matrix(float (*matrix)[3], int axis, float angle)
+void	set_projection_matrix(float (*matrix)[3], int axis, float angle)
 {
 	b_zero_matrix(matrix);
 	if (axis == X_AXIS)
@@ -84,22 +84,22 @@ t_point	project_point(float matrix[3][3], t_point point)
 	return (result);
 }
 
-void	rotate_along_axis(t_point *points, t_point *projection, \
-	float angle, int len, int axis)
-{
-	int		i;
-	float	projection_matrix[3][3];
-	float	rad;
+// void	rotate_along_axis(t_point *points, t_point *projection, 
+// 	float angle, int len, int axis)
+// {
+// 	int		i;
+// 	float	projection_matrix[3][3];
+// 	float	rad;
 
-	rad = angle * M_PI / 180;
-	set_projection_matrix(projection_matrix, axis, rad);
-	i = 0;
-	while (i < len)
-	{
-		projection[i] = project_point(projection_matrix, points[i]);
-		i++;
-	}
-}
+// 	rad = angle * M_PI / 180;
+// 	set_projection_matrix(projection_matrix, axis, rad);
+// 	i = 0;
+// 	while (i < len)
+// 	{
+// 		projection[i] = project_point(projection_matrix, points[i]);
+// 		i++;
+// 	}
+// }
 
 // !TO_RESEARCH : projection matrix value
 

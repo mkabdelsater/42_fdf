@@ -6,12 +6,13 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:21:30 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/24 16:34:16 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:26:44 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 #include "../inc/rendering.h"
+#include "../inc/geometry.h"
 
 // ! Optimization Angle : each of these functions can or
 // ! should be applied separately
@@ -92,12 +93,12 @@ void	parse_map_to_model(t_globals *fdf, t_point *projection)
 	bend_model_view(projection, fdf->map.len, fdf->map.b_range);
 	if (fdf->map.b_geo)
 		toggle_geography_view(&fdf->map, projection);
-	rotate_along_axis(projection, projection, fdf->map.ang[X_AXIS], \
-		fdf->map.len, X_AXIS);
-	rotate_along_axis(projection, projection, fdf->map.ang[Y_AXIS], \
-		fdf->map.len, Y_AXIS);
-	rotate_along_axis(projection, projection, fdf->map.ang[Z_AXIS], \
-		fdf->map.len, Z_AXIS);
+	project_x(projection, projection, fdf->map.ang[X_AXIS], \
+		fdf->map.len);
+	project_y(projection, projection, fdf->map.ang[Y_AXIS], \
+		fdf->map.len);
+	project_z(projection, projection, fdf->map.ang[Z_AXIS], \
+		fdf->map.len);
 	if (fdf->map.b_geo && fdf->map.b_shadow)
 		toggle_opacity(projection, fdf->map.len);
 	orto_projection(projection, projection, fdf->map.len);
