@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 11:55:14 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/27 16:14:52 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:39:26 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	error_out(char *err_msg)
 }
 
 // !TODO Add a stats menu, a controls menu and an option to flip between them
+// !TODO use mlx_destroy image
 // ? Note : mlx_hook requires very specific function signatures or it will
 // ? segfault (probably because it tries to access a param that doesn't exit?)
 
