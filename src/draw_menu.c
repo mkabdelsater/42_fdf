@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:02:22 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/27 13:08:32 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:43:41 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,13 @@ static void	draw_color_controls(t_globals *fdf)
 	line = COLORSCHEME_BOX;
 	render_string(fdf, MENU_TAB_SIZE, line, "---- COLORSCHEME ----");
 	line += LINE_SIZE;
-	render_string(fdf, MENU_TAB_SIZE, line, "0: Default");
+	render_string(fdf, MENU_TAB_SIZE, line, "1: Default");
 	line += LINE_SIZE;
-	render_string(fdf, MENU_TAB_SIZE, line, "1: Terrain");
+	render_string(fdf, MENU_TAB_SIZE, line, "2: Black on White");
 	line += LINE_SIZE;
-	render_string(fdf, MENU_TAB_SIZE, line, "2: Black & White");
+	render_string(fdf, MENU_TAB_SIZE, line, "3: White on Black");
 	line += LINE_SIZE;
-	render_string(fdf, MENU_TAB_SIZE, line, "3: White & Black");
+	render_string(fdf, MENU_TAB_SIZE, line, "4: Terrain");
 	line += LINE_SIZE;
 }
 
