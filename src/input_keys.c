@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:56:38 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/28 15:33:00 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:50:13 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ static void	map_controls_c(int key, t_globals *fdf)
 		fdf->map.scale *= 1.5;
 	if ((key == KEY_RES || key == KEY_RES2) && fdf->keys.ctrl)
 		fdf->map.scale /= 1.5;
+	if ((key == KEY_RES || key == KEY_RES2))
+		fdf->map.z_divisor += 10;
 	if ((key == KEY_SUM || key == KEY_SUM2) && fdf->map.z_divisor > 1)
 		fdf->map.z_divisor -= 10;
 	if (key == KEY_I)
