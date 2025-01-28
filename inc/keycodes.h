@@ -6,12 +6,14 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:04:13 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/21 15:05:07 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:10:16 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEYCODES_H
 # define KEYCODES_H
+
+// ! To get the key codes you can `printf("%d", key)` inside a hooked function
 
 // #ifdef __linux_
 # define KEY_ESC     65307
