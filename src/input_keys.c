@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 12:56:38 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/27 16:28:48 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:33:00 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	set_view_to_topdown(t_map *map)
 
 static void	map_controls_a(int key, t_globals *fdf)
 {
+	ft_printf("\nKey Pressed : %d\n", key);
 	if (key == KEY_ESC)
 		terminate(fdf);
 	if (key == KEY_R)
@@ -68,8 +69,8 @@ static void	map_controls_b(int key, t_globals *fdf)
 		fdf->map.b_shadow = !fdf->map.b_shadow;
 	if (key == KEY_F)
 		render_model(fdf, FIT);
-	if (key == KEY_CMD)
-		fdf->keys.ctrl = 1;
+	if (key == KEY_CTRL)
+		fdf->keys.ctrl = true;
 }
 
 static void	map_controls_c(int key, t_globals *fdf)
@@ -93,6 +94,9 @@ static void	map_controls_c(int key, t_globals *fdf)
 
 // ? the signature is based on the prototypes found in the MLX library
 // ! TO_REFACTOR : there are actions that trigger re-rendering twice, bad!
+// ! TO_RESEARCH : what's up with the way the functions are mapped?
+// ! seems like poor performance/encapsulation
+// ! to call *every single* function for any event
 
 int	on_key_down(int key, void *param)
 {
@@ -103,6 +107,8 @@ int	on_key_down(int key, void *param)
 	map_controls_a(key, fdf);
 	map_controls_b(key, fdf);
 	map_controls_c(key, fdf);
+	if (key >= KEY_1 && key <= KEY_4)
+		swap_color_scheme(key, &fdf->map);
 	render_model(fdf, FREE);
 	return (0);
 }
