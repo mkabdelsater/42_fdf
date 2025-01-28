@@ -6,7 +6,7 @@
 /*   By: moabdels <moabdels@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:55:52 by moabdels          #+#    #+#             */
-/*   Updated: 2025/01/27 16:28:48 by moabdels         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:37:58 by moabdels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,15 @@ typedef struct s_colors
 	int	menu;
 }	t_colors;
 
-// the actual picture we're looking at
+/** the actual picture we're looking at
+ *
+ *? MLX Images are char arrays, each pixel is placed one after the other inside
+ *? top-left is (0,0), then we go left to right, top to bottom.
+ *? If we take x and y to be coordinates on the cartesian plane then
+ *? X in the array : x * 5
+ *? Y in the array : x + 4 * window_width * y
+ *? The chars in the array correspond to RGBA
+ */
 
 typedef struct s_bitmap
 {
